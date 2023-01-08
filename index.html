@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TED Bilik Kursları</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@0;1&display=swap");
+      body {
+        font-family: "Source Code Pro", monospace;
+      }
+    </style>
     <script src="./app.js"></script>
 
     <script type="module">
@@ -24,6 +30,7 @@
         doneMessage: null,
 
         handleClick(ix) {
+          document.querySelector("img").click();
           this.answers.push({ qIndex: this.qIndex, ix });
           if (`choice-${ix}` === questions[this.qIndex].correct)
             this.correctCount++;
@@ -68,17 +75,17 @@
       }).mount();
     </script>
   </head>
-  <body class="bg-blue-900">
+  <body class="bg-cyan-900">
     <main
-      class="xs:text-lg text-white flex h-screen w-screen flex-col items-center sm:text-xl md:text-2xl font-mono max-w-4xl mx-auto"
+      class="xs:text-lg text-slate-100 flex h-screen w-screen flex-col items-center sm:text-xl md:text-2xl max-w-4xl mx-auto"
     >
       <header class="flex flex-col items-center justify-center gap-3 p-5">
         <img
           src="./ted-logo.png"
           alt="ted bilik"
-          class="w-8/12 max-w-lg rounded-2xl bg-white p-4"
+          class="w-8/12 max-w-lg rounded-2xl bg-slate-100 p-4"
         />
-        <h1 class="font-bold text-white">Sinif Seçimi Sorğusu</h1>
+        <h1 class="font-bold text-slate-100">Sinif Seçimi Sorğusu</h1>
         <h2 class="text-slate-100">
           Bu sorğunun məqsədi sizə uyğun olan hazırlıq sinfini seçməkdir. Ən
           uğurlu seçim üçün sorğunu bir dəfə doldurun.
@@ -145,22 +152,22 @@
           </select>
           <button
             type="submit"
-            class="min-w-full rounded-lg bg-blue-700 py-1 text-center hover:cursor-pointer hover:bg-blue-800"
+            class="min-w-full rounded-lg bg-cyan-700 py-1 text-center hover:cursor-pointer hover:bg-cyan-800"
           >
             Başla
           </button>
         </form>
         <div v-else>
-          <span class="mb-3 font-semibold text-white"
+          <span class="mb-3 font-semibold text-slate-100"
             >Sual {{answers.length+1}}</span
           >
           <article
-            class="mx-2 flex flex-col items-center justify-center gap-2 rounded-xl border-2 p-3 text-white"
+            class="mx-2 flex flex-col items-center justify-center gap-2 rounded-xl border-2 p-3 text-slate-100"
           >
             <p class="mb-2 text-center">{{questions[qIndex].prompt}}</p>
 
             <button
-              class="min-w-full rounded-lg bg-blue-700 py-1 text-center hover:cursor-pointer hover:bg-blue-800"
+              class="min-w-full rounded-lg bg-cyan-700 py-1 text-center hover:cursor-pointer hover:bg-cyan-800"
               v-for="(c, ix) in questions[qIndex].choices"
               @click="handleClick(ix)"
             >
