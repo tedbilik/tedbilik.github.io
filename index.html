@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TED Bilik Kursları</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./app.js"></script>
+
+    <script type="module">
+      import { createApp } from "https://unpkg.com/petite-vue?module";
+      import PocketBase from "./pocketbase.es.mjs";
+
+      const pb = new PocketBase("http://217.160.75.124:3333");
+      createApp({
+        name: null,
+        grade: null,
+        phoneNum: null,
+        email: null,
+        qIndex: null,
+        answers: [],
+        correctCount: 0,
+        doneMessage: null,
+
+        handleClick(ix) {
+          this.answers.push({ qIndex: this.qIndex, ix });
+          if (`choice-${ix}` === questions[this.qIndex].correct)
+            this.correctCount++;
+          this.qIndex++;
+          if (questions[this.qIndex].reset) {
+            if (this.correctCount < questions[this.qIndex].need) {
+              const f = questions[this.qIndex].fail;
+              pb.collection("submissions").create({
+                name: this.name,
+                grade: this.grade,
+                answers: this.answers,
+                phoneNumber: this.phoneNum,
+                email: this.email,
+                class: f,
+              });
+
+              if (f === 1) {
+                this.doneMessage =
+                  "Sizin İ1 sinfinə uyğun olduğunuzu düşünürük! Əgər bu sinifdə hansı mövzuların əhatə olunacağı və ya başqa mövzu ilə bağlı suallarınız olarsa, bizimlə mütləq əlaqə saxlayın. Sizi kursumuzda görmək çox xoş olardı!";
+              }
+              if (f === 1.5) {
+                this.doneMessage =
+                  "Əla! Sizin üçün İ1 sinfini tövsiyə edirik, amma yaxşı nəticə göstərdiyiniz üçün İ2 sinfi də uyğun ola bilər. Zəhmət olmasa, bizimlə əlaqə saxlayın və sizin üçün kursun müəllif-müəllimləri Abutalıb-Barış Namazov və Emin Orucov ilə görüş təşkil edək ki, sinif seçiminizi dəqiqləşdirəsiniz. Sizi kursumuzda görmək çox xoş olardı!";
+              }
+              if (f === 2) {
+                this.doneMessage =
+                  "Çox əla nəticə göstərdiniz! Sizin üçün İ2 sinfinin uyğun olduğunu düşünürük. Əgər bu sinifdə hansı mövzuların əhatə olunacağı və ya başqa mövzu ilə bağlı suallarınız olarsa, bizimlə mütləq əlaqə saxlayın. Sizi kursumuzda görmək çox xoş olardı!";
+              }
+              if (f === 2.5) {
+                this.doneMessage =
+                  "Təbriklər, çox əla nəticə göstərdiniz! Sizin üçün İ2 sinfini tövsiyə edirik, amma yaxşı nəticə göstərdiyiniz üçün İ3 sinfi də uyğun ola bilər. Zəhmət olmasa, bizimlə əlaqə saxlayın və sizin üçün kursun müəllif-müəllimləri Abutalıb-Barış Namazov və Emin Orucov ilə görüş təşkil edək ki, sinif seçiminizi dəqiqləşdirəsiniz. Sizi kursumuzda görmək çox xoş olardı!";
+              }
+              if (f === 3) {
+                this.doneMessage =
+                  "Təbrik edirik, ən yaxşı nəticəni göstərdiniz! Sizin üçün İ3 sinifini uyğun görürük. Bu sinifin hazırlığı intensiv və dərindir, ona görə də, sizə təklif edirik ki, bizimlə əlaqə saxlayın və sizin üçün kursun müəllif-müəllimləri Abutalıb-Barış Namazov və Emin Orucov ilə görüş təşkil edək. Sizi kursumuzda görmək çox xoş olardı!";
+              }
+            }
+            this.correctCount = 0;
+            this.qIndex++;
+          }
+        },
+      }).mount();
+    </script>
+  </head>
+  <body class="bg-blue-900">
+    <main
+      class="xs:text-lg text-white flex h-screen w-screen flex-col items-center sm:text-xl md:text-2xl font-mono max-w-4xl mx-auto"
+    >
+      <header class="flex flex-col items-center justify-center gap-3 p-5">
+        <img
+          src="./ted-logo.png"
+          alt="ted bilik"
+          class="w-8/12 max-w-lg rounded-2xl bg-white p-4"
+        />
+        <h1 class="font-bold text-white">Sinif Seçimi Sorğusu</h1>
+        <h2 class="text-slate-100">
+          Bu sorğunun məqsədi sizə uyğun olan hazırlıq sinfini seçməkdir. Ən
+          uğurlu seçim üçün sorğunu bir dəfə doldurun.
+        </h2>
+      </header>
+      <div id="survey" v-scope>
+        <div v-if="doneMessage" class="px-5 mb-4">
+          <p>Sorğunu tamamladığınız üçün təşəkkür edirik!</p>
+          {{doneMessage}}
+        </div>
+        <form
+          id="start"
+          class="flex flex-col gap-2 justify-center items-center"
+          @submit.prevent="qIndex = 1"
+          v-else-if="qIndex === null"
+        >
+          <label for="name">Ad və soyadınız: </label>
+          <input
+            class="text-black"
+            placeholder="Barış Namazov"
+            autocomplete="off"
+            id="name"
+            name="name"
+            v-model="name"
+            required
+          />
+          <label for="phoneNum">Əlaqə nömrəniz</label>
+          <input
+            class="text-black"
+            placeholder="055 939 88 48"
+            autocomplete="off"
+            id="phoneNum"
+            name="phoneNum"
+            v-model="phoneNum"
+            required
+          />
+          <label for="email">Email adresiniz</label>
+          <input
+            class="text-black"
+            placeholder="ted@bilik.edu.az"
+            autocomplete="off"
+            id="email"
+            name="email"
+            type="email"
+            v-model="email"
+          />
+          <label for="grade">Sinfiniz</label>
+          <select
+            id="grade"
+            name="grade"
+            required
+            class="text-black"
+            v-model="grade"
+          >
+            <option value="4-">4 və ya aşağı</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="other">Başqa</option>
+          </select>
+          <button
+            type="submit"
+            class="min-w-full rounded-lg bg-blue-700 py-1 text-center hover:cursor-pointer hover:bg-blue-800"
+          >
+            Başla
+          </button>
+        </form>
+        <div v-else>
+          <span class="mb-3 font-semibold text-white"
+            >Sual {{answers.length+1}}</span
+          >
+          <article
+            class="mx-2 flex flex-col items-center justify-center gap-2 rounded-xl border-2 p-3 text-white"
+          >
+            <p class="mb-2 text-center">{{questions[qIndex].prompt}}</p>
+
+            <button
+              class="min-w-full rounded-lg bg-blue-700 py-1 text-center hover:cursor-pointer hover:bg-blue-800"
+              v-for="(c, ix) in questions[qIndex].choices"
+              @click="handleClick(ix)"
+            >
+              {{c}}
+            </button>
+          </article>
+        </div>
+        <p v-if="doneMessage" class="flex flex-col px-5 mb-5">
+          <span class="italic">Əlaqə nömrələrimiz:</span>
+          <span>+994 55 939 88 48 (Zəng və Whatsapp)</span>
+          <span>+994 12 538 29 85</span>
+          <span class="mt-2 italic">Emaillərimiz:</span>
+          <a href="mailto:ted@bilik.edu.az">ted@bilik.edu.az</a>
+          <a href="mailto:dahimatik@gmail.com">dahimatik@gmail.com</a>
+
+          <span class="mt-2 italic">Kursumuzun adresi:</span>
+          <span
+            >H.Cavid prospekti, məhəllə 522 (Elmlər Akademiyası metrosu, Texniki
+            Universitetə yaxın)</span
+          >
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
