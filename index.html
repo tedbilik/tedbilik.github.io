@@ -24,11 +24,11 @@
     <script type="module">
       import { createApp, nextTick } from "https://unpkg.com/petite-vue?module";
 
-      // const pb = new PocketBase("https://3d459b3.online-server.cloud/");
       createApp({
         name: null,
         grade: null,
         phoneNum: null,
+        classType: "canlı",
         email: null,
         qIndex: null,
         answers: [],
@@ -57,6 +57,7 @@
                   answers: this.answers,
                   phoneNumber: this.phoneNum,
                   email: this.email,
+                  classType: this.classType,
                   decision: f,
                 }),
               });
@@ -131,7 +132,7 @@
         </div>
         <form
           id="start"
-          class="flex flex-col gap-2 justify-center items-center"
+          class="flex flex-col gap-3 justify-center items-center"
           @submit.prevent="qIndex = 1"
           v-else-if="qIndex === null"
         >
@@ -182,6 +183,17 @@
             <option value="10">10</option>
             <option value="11">11</option>
             <option value="other">Başqa</option>
+          </select>
+          <label for="classType">Maraqlandığınız dərs növü</label>
+          <select
+            id="classType"
+            name="classType"
+            required
+            class="text-black p-1"
+            v-model="classType"
+          >
+            <option value="canlı">Canlı</option>
+            <option value="online">Onlayn</option>
           </select>
           <button
             type="submit"

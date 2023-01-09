@@ -52,7 +52,7 @@ const questions = [
   },
   {
     prompt:
-      "3000000000 (9 sayda sıfır) ədədini ifadə etmək üçün int tipindən istifadə edə bilərikmi?",
+      "int tipindən 3000000000 (9 sayda sıfır) ədədini ifadə etmək üçün istifadə edə bilərikmi?",
     choices: ["Bəli, int yetərlidir", "Xeyr, long long tipi lazımdır"],
     correct: "choice-1",
   },
@@ -70,13 +70,7 @@ const questions = [
   {
     prompt:
       "x = 5 və y = 3 olduqda, növbəti sətiri icra etdikdən sonra z dəyişəninin dəyəri nə olacaq?\nbool z = (x*y > 13 && x+y < 8);",
-    choices: [
-      "0",
-      "1",
-      "true",
-      "false",
-      "Kompilyasiya xətası (sintaksis səhvi)",
-    ],
+    choices: ["1", "true", "false", "Kompilyasiya xətası (sintaksis səhvi)"],
     correct: "choice-3",
   },
   {
