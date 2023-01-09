@@ -86,11 +86,6 @@ const questions = [
     correct: "choice-1",
   },
   {
-    reset: true,
-    need: 1,
-    fail: 1,
-  },
-  {
     prompt:
       "Seçimlərdən hansı tip sözləri ifadə etmək üçün istifadə oluna bilər?",
     choices: ["String", "string", "text", "txt", "myString"],
