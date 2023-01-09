@@ -142,7 +142,7 @@ const questions = [
   },
   {
     prompt:
-      "Seçimlərdən hansı 1-dən 10-a qədər cüt ədədlərin üzərində dövr edir?",
+      "Seçimlərdən hansı 1-dən 9-a qədər cüt ədədlərin üzərində dövr edir?",
     choices: [
       "for(int i = 0; i < 10; i++)",
       "for(int i = 0; i < 10; i+=2)",

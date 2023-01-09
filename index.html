@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TED Bilik Kursları</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        future: {
+          hoverOnlyWhenSupported: true,
+        },
+      };
+    </script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@0;1&display=swap");
       body {
@@ -15,7 +22,7 @@
     <script src="./app.js"></script>
 
     <script type="module">
-      import { createApp } from "https://unpkg.com/petite-vue?module";
+      import { createApp, nextTick } from "https://unpkg.com/petite-vue?module";
       import PocketBase from "./pocketbase.es.mjs";
 
       const pb = new PocketBase("https://3d459b3.online-server.cloud/");
@@ -30,12 +37,14 @@
         doneMessage: null,
 
         handleClick(ix) {
-          document.querySelector("img").click();
-          this.answers.push({ qIndex: this.qIndex, ix });
+          this.answers.push({
+            sual: questions[this.qIndex].prompt,
+            cavab: questions[this.qIndex].choices[ix],
+          });
           if (`choice-${ix}` === questions[this.qIndex].correct)
             this.correctCount++;
           this.qIndex++;
-          if (questions[this.qIndex].reset) {
+          while (questions[this.qIndex].reset) {
             if (this.correctCount < questions[this.qIndex].need) {
               const f = questions[this.qIndex].fail;
               pb.collection("submissions").create({
@@ -157,18 +166,19 @@
             Başla
           </button>
         </form>
-        <div v-else>
+        <div v-else class="flex flex-col justify-center items-center">
           <span class="mb-3 font-semibold text-slate-100"
             >Sual {{answers.length+1}}</span
           >
           <article
-            class="mx-2 flex flex-col items-center justify-center gap-2 rounded-xl border-2 p-3 text-slate-100"
+            class="mx-2 flex flex-col items-center justify-center gap-3 rounded-xl border-2 p-3 text-slate-100"
           >
             <p class="mb-2 text-center">{{questions[qIndex].prompt}}</p>
 
             <button
               class="min-w-full rounded-lg bg-cyan-700 py-1 text-center hover:cursor-pointer hover:bg-cyan-800"
               v-for="(c, ix) in questions[qIndex].choices"
+              id="qb"
               @click="handleClick(ix)"
             >
               {{c}}
