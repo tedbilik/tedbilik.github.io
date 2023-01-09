@@ -63,7 +63,7 @@
 
               if (f === 1) {
                 this.doneMessage =
-                  "Sizin İ1 sinfinə uyğun olduğunuzu düşünürük! Əgər bu sinifdə hansı mövzuların əhatə olunacağı və ya başqa mövzu ilə bağlı suallarınız olarsa, bizimlə mütləq əlaqə saxlayın. Sizi kursumuzda görmək çox xoş olardı!";
+                  "Sizin İ1 sinfinə uyğun olduğunuzu düşünürük! Əgər bu sinifdə hansı mövzuların əhatə olunacağı və ya başqa məsələ ilə bağlı suallarınız olarsa, bizimlə mütləq əlaqə saxlayın. Sizi kursumuzda görmək çox xoş olardı!";
               }
               if (f === 1.5) {
                 this.doneMessage =
@@ -71,7 +71,7 @@
               }
               if (f === 2) {
                 this.doneMessage =
-                  "Çox əla nəticə göstərdiniz! Sizin üçün İ2 sinfinin uyğun olduğunu düşünürük. Əgər bu sinifdə hansı mövzuların əhatə olunacağı və ya başqa mövzu ilə bağlı suallarınız olarsa, bizimlə mütləq əlaqə saxlayın. Sizi kursumuzda görmək çox xoş olardı!";
+                  "Çox əla nəticə göstərdiniz! Sizin üçün İ2 sinfinin uyğun olduğunu düşünürük. Əgər bu sinifdə hansı mövzuların əhatə olunacağı və ya başqa məsələ ilə bağlı suallarınız olarsa, bizimlə mütləq əlaqə saxlayın. Sizi kursumuzda görmək çox xoş olardı!";
               }
               if (f === 2.5) {
                 this.doneMessage =
@@ -92,6 +92,7 @@
   <body class="bg-cyan-900">
     <main
       class="xs:text-lg text-slate-100 flex h-screen w-screen flex-col items-center sm:text-xl md:text-2xl max-w-4xl mx-auto"
+      v-scope
     >
       <header class="flex flex-col items-center justify-center gap-3 p-5">
         <img
@@ -99,16 +100,34 @@
           alt="ted bilik"
           class="w-8/12 max-w-lg rounded-2xl bg-slate-100 p-4"
         />
-        <h1 class="font-bold text-slate-100">Sinif Bəlirləmə Sorğusu</h1>
-        <h2 class="text-slate-100">
+        <h1 class="font-bold text-slate-100">
+          İnformatika Sinif Bəlirləmə Sorğusu
+        </h1>
+        <h2 class="text-slate-100 text-center" v-if="qIndex === null">
           Bu sorğunun məqsədi sizə uyğun olan hazırlıq sinfini seçməkdir. Ən
-          uğurlu seçim üçün sorğunu bir dəfə doldurun.
+          uğurlu nəticə üçün sorğunu bir dəfə doldurun.
         </h2>
       </header>
-      <div id="survey" v-scope>
-        <div v-if="doneMessage" class="px-5 mb-4">
-          <p>Sorğunu tamamladığınız üçün təşəkkür edirik!</p>
-          {{doneMessage}}
+      <div id="survey">
+        <div v-if="doneMessage" class="px-5 mb-4 flex flex-col items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="64"
+            height="64"
+            fill="#4ade80"
+            class="bi bi-check-circle-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+            />
+          </svg>
+          <p class="mt-2 mb-4 text-center">
+            Sorğunu tamamladığınız üçün təşəkkür edirik!
+          </p>
+          <p class="font-sans text-center font-semibold text-green-400">
+            {{doneMessage}}
+          </p>
         </div>
         <form
           id="start"
@@ -190,20 +209,24 @@
             </button>
           </article>
         </div>
+        <div v-if="doneMessage" class="h-px w-full my-2 bg-slate-50"></div>
         <p v-if="doneMessage" class="flex flex-col px-5 mb-5">
           <span class="italic">Əlaqə nömrələrimiz:</span>
-          <span>+994 55 939 88 48 (Zəng və Whatsapp)</span>
-          <span>+994 12 538 29 85</span>
+          <span class="pl-8">+994 55 939 88 48 (Zəng və Whatsapp)</span>
+          <span class="pl-8">+994 12 538 29 85</span>
           <span class="mt-2 italic">Emaillərimiz:</span>
-          <a href="mailto:ted@bilik.edu.az">ted@bilik.edu.az</a>
-          <a href="mailto:dahimatik@gmail.com">dahimatik@gmail.com</a>
+          <a class="pl-8" href="mailto:ted@bilik.edu.az">ted@bilik.edu.az</a>
+          <a class="pl-8" href="mailto:dahimatik@gmail.com"
+            >dahimatik@gmail.com</a
+          >
 
           <span class="mt-2 italic">Kursumuzun adresi:</span>
-          <span
+          <span class="pl-8"
             >H.Cavid prospekti, məhəllə 522 (Elmlər Akademiyası metrosu, Texniki
             Universitetə yaxın)</span
           >
         </p>
+        <div class="h-2 w-full"></div>
       </div>
     </main>
   </body>

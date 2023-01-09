@@ -235,7 +235,7 @@ const questions = [
       "s[-1]",
       "s.end()",
       "*--s.end()",
-      "bu, mümkün deyil",
+      "bunu birbaşa etmək mümkün deyil",
     ],
     correct: "choice-5",
   },
@@ -304,7 +304,7 @@ const questions = [
   {
     prompt: "Qraflarda DFS, BFS, və Dijkstra alqoritmləri ilə tanışsımızmı?",
     choices: [
-      "Hamısını çox yaxşı bilirəm",
+      "Hamısını yaxşı bilirəm",
       "Ümumi tanışlığım var, amma çox istifadələrini bilmirəm",
       "Hələ öyrənməmişəm",
     ],
