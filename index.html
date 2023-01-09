@@ -23,9 +23,8 @@
 
     <script type="module">
       import { createApp, nextTick } from "https://unpkg.com/petite-vue?module";
-      import PocketBase from "./pocketbase.es.mjs";
 
-      const pb = new PocketBase("https://3d459b3.online-server.cloud/");
+      // const pb = new PocketBase("https://3d459b3.online-server.cloud/");
       createApp({
         name: null,
         grade: null,
@@ -47,13 +46,19 @@
           while (questions[this.qIndex].reset) {
             if (this.correctCount < questions[this.qIndex].need) {
               const f = questions[this.qIndex].fail;
-              pb.collection("submissions").create({
-                name: this.name,
-                grade: this.grade,
-                answers: this.answers,
-                phoneNumber: this.phoneNum,
-                email: this.email,
-                class: f,
+              fetch("https://3d459b3.online-server.cloud/", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  name: this.name,
+                  grade: this.grade,
+                  answers: this.answers,
+                  phoneNumber: this.phoneNum,
+                  email: this.email,
+                  decision: f,
+                }),
               });
 
               if (f === 1) {
