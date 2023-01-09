@@ -69,7 +69,7 @@ const questions = [
   },
   {
     prompt:
-      "x = 5 və y = 3 olduqda, növbəti sətiri icra etdikdən sonra z dəyişəninin dəyəri nə olacaq?\nbool z = (x*y > 13 && x+y < 8);",
+      "x = 5 və y = 3 olduqda, növbəti sətiri icra etdikdən sonra z dəyişəninin dəyəri nə olacaq?<br/>bool z = (x*y > 13 && x+y < 8);",
     choices: ["1", "true", "false", "Kompilyasiya xətası (sintaksis səhvi)"],
     correct: "choice-3",
   },
