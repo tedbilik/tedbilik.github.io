@@ -46,7 +46,7 @@
           while (questions[this.qIndex].reset) {
             if (this.correctCount < questions[this.qIndex].need) {
               const f = questions[this.qIndex].fail;
-              fetch("https://3d459b3.online-server.cloud/", {
+              fetch("https://3d459b3.online-server.cloud/create", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
