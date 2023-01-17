@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TED Bilik Kursları</title>
+    <link rel="stylesheet" href="/dist/styles.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap");
+      body {
+        font-family: "Source Sans Pro", sans-serif;
+      }
+      pre > code.language-cpp {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    </style>
+    <link rel="stylesheet" href="/dist/prism.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+      integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
+      crossorigin="anonymous"
+    />
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+      integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+      integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true },
+          ],
+          // • rendering keys, e.g.:
+          throwOnError: false,
+        });
+      });
+    </script>
+  </head>
+  <body class="bg-neutral-800" lang="az">
+    <main
+      class="text-neutral-200 min-h-screen w-screen px-5 max-w-4xl text-lg mx-auto py-5 language-cpp"
+    >
+      <h1 class="flex justify-center text-3xl">
+        Dərs 1: C++ dilinin olimpiada üçün təməlləri
+      </h1>
+      <section class="mt-6">
+        <h2 class="text-2xl">Dərsin videosu</h2>
+        <p class="mt-2">
+          Dərsin videosu yükləndikdən sonra bura yerləşdiriləcək.
+        </p>
+      </section>
+      <section class="mt-6">
+        <h2 class="text-2xl">Qeydlər</h2>
+        <p class="mt-2">
+          İlk dərsə xoş gəldiniz! Bu dərsdə C++ dili və olimpiadada onun
+          istifadəsindən danışacağıq. Artıq C++ bilirsinizsə, bu, əladır, sizə
+          təkrar olacaq. Əks halda, kəmərləri bağlayın, çünki bu dərsdən sonra
+          artıq C++-da proqramlar yaza biləcəksiniz! Dərsin özünə keçməzdən
+          əvvəl bu qeydlərin mövcudluğu və məqsədi haqqında danışaq. Necə ki,
+          şagirdlər dərsə cavab verməyə hazırlaşır, müəllimlər də dərsə
+          hazırlaşırlar ki, yaxşı və planlı dərs keçə bilsinlər. Ona görə də, bu
+          qeydlər, ilk olaraq, mənim öz hazırlığım üçündür. Ondan əlavə olaraq,
+          yazmağı da sevirəm deyə bunu bir imkan kimi görürəm. Əmin olun ki, bu
+          qeydlərin yazılmasına və hazırlanmasına kifayət qədər əmək sərf olunur
+          &mdash; hətta, ola bilsin, dərsdə bir şeyi deməyi unuduruq və ya
+          axırda vaxtımız çatmır. Ona görə də, ümid edirəm ki, bu qeydləri tam
+          şəkildə oxuyarsınız. Həm də, öz təcrübəmdən bilirəm ki, bəzi uşaqlar
+          oxumaqla daha rahat öyrənirlər, bu, onlar üçün də yaxşı olar. Vaxtımın
+          azlığı səbəbilə bu yazıları redaktə etməyə vaxtım olmur, ona görə də,
+          texniki, qrammatik və ya məna səhvləri tapdıqda, mənə bildirməyiniz
+          yaxşı olar. İndi isə qayıdaq dərsə.
+        </p>
+        <p class="mt-2">
+          Gəlin, hər şeydən öncə C++-da hər yerdə görə biləcəyiniz "Salam
+          Dünya!" koduna baxaq:
+        </p>
+        <div>
+          <pre><code>#include &lt;iostream>
+using namespace std;
+int main() {
+  cout &lt;&lt; "Salam, əziz olimpiaçılar!" &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        </div>
+        <p>
+          Bu kodu sətir-sətir anlamağa çalışaq, sonra isə bu kodun eynisinin
+          "olimpiada stilində" yazılışına baxaq. İlk sətir
+          <code>#include &lt;iostream></code> kitabxanadan "idxaldır". Yəni,
+          <code>iostream</code> adlanan kitabxananın daxilindəki bütün kodu bu
+          koda köçürmə. Bu köçürməni biz görmürük və çox vaxt onları görmək də
+          istəmərik &mdash; onların içində yazılan kodlar həmişə oxunaqlı
+          olmurlar. Hazırkı <code>iostream</code> kitabxanası (<i>ayostrim</i>
+          kimi oxunur) bizə proqramda giriş və çıxış üçün operatorlar verir, elə
+          onun açılışı input-output stream deməkdir (tərcüməsi: giriş-çıxış
+          axını). Qısaca, dili yazanlar bizim üçün giriş və çıxış əməlləri
+          yazıblar, biz isə onların yazdığı kodu idxal edib birbaşa istifadə
+          edirik.
+        </p>
+        <p class="mt-2">
+          Sonrakı sətirdə isə <code>using namespace std;</code> görürük. Bu,
+          əslində, anlamaq üçün daha çətin bir sətirdir... C++-da biraz qəliz
+          işləyən və <code>namespace</code> adlanan "ad çoxluqları" var. Onlar,
+          əsasən, eyni adlı şeyləri (dəyişənlər, funksiyalar və sair) ayırmaq
+          üçündür. Məsələn, <code>cout</code> funksiyası (o, əslində, funksiya
+          deyil, obyektdir, amma bunlar kampın əhatəsindən kənar olduğu üçün
+          bəzən belə səhvləri qəsdən edəcəyəm. maraqlananlar Piazzada sual kimi
+          soruşa bilərlər.) <code>std</code> (<i>estede</i> və ya
+          <i>standart</i> kimi oxunur) adlanan ad çoxluğunda təyin olunub. Əgər
+          bu sətri yazmasaq, hər dəfə həmin ad çoxluğunu birbaşa istifadə
+          etməliyik. Onda <code>std::cout</code> yazmalı olardıq. Amma biz
+          olimpiadaçılarıq və sürətli kod yazmağı xoşlayırıq, ona görə bu sətri
+          yazaq. Bunları da gəlin öz məqsədimiz üçün idxal kimi anlayaq.
+          <code>std</code> ad çoxluğunda bizə olimpiadada lazım olan hər şey
+          var.
+        </p>
+        <p class="mt-2">
+          Sonra isə <code>int main()</code> funksiyası var, hansı ki,
+          riyaziyyatdakı çoxluq işarəsi ilə açılıb və ən sonda bağlanıb.
+          <code>main</code> adlanan funksiyalar xüsusi olur &mdash; kompüter
+          proqramı başlatdıqda bu funksiyanı avtomatik çalışdıracaq. Başqa
+          sözlərdə, <code>main</code> proqramnı giriş funksiyasıdır. Funksiyalar
+          haqqında daha sonra danışacağıq. Çoxluq işarələri isə kod blokları
+          yaradır. Kod blokları haqqında da ayrıca danışacağıq. Məsələn, burada
+          funksiyanın içi özü bir blokdur və onun içində başqa bloklar yoxdur.
+        </p>
+        <p class="mt-2">
+          Sona yaxınlaşırıq. İndi isə <code>cout</code> və arxasında gələn
+          kiçikdir işarələri var. O işarələrə biz bu kodda axın işarələri
+          deyəcəyik. <code>cout</code>-un necə işlədiyinin dərinliyinə girmək
+          istəmirəm, amma təsəvvür edin ki, o, konsola (yəni, proqramı işlədəndə
+          çıxan "qara ekrana") sətirlər yazmaq üçün istifadə olunur və siz
+          çıxışa verilənləri ona "axın" ilə ötürürsünüz. Sətrin sonundakı
+          <code>endl</code> isə (<i>endlayn</i> kimi oxunur) yeni sətir
+          deməkdir.
+        </p>
+        <p class="mt-2">
+          Ən son sətrimiz isə <code>return 0</code> olandır. Bayaq dedik ki,
+          <code>main</code> funksiyadır. Onu <code>int main</code> kimi təyin
+          edirik, bu da onun hansısa <code>int</code> tipində dəyər alması
+          deməkdir. Bu xüsusi funksiyada onun aldığı dəyər proqramın necə
+          bitməsini göstərir. <code>0</code> uğurlu bitməsi göstərir, ona görə
+          də, biz həmişə <code>0</code> dəyərini verəcəyik. (Onu qeyd edim ki,
+          funksiyanın "aldığı dəyər" və "qaytardığı dəyər" ifadələri əks
+          səslənsə də, proqramlaşdırma onların mənası eynidir.
+          <code>return</code> tərcümədə qaytarmaq deməkdir və proqramçı dəyərir
+          funksiyada çağırana qaytarır. Funksiya isə o dəyəri almış olur. Yəni,
+          qaytarılma funksiyanı çağırana aiddir, alma isə funksiyanın özünə.)
+        </p>
+        <p class="mt-4">
+          Əla! C++-da ən sadə proqramı indi super şəkildə başa düşürük!
+          Düşürükmü? Əgər yuxarıda yazılanlar haqqında hər şeyi tam ətraflı başa
+          düşmədinizsə, heç narahat olmayın. Olimpiadada bunların heç birini
+          bilməyə ehtiyacım yoxdur, amma mən istəyirəm ki, siz onları da
+          anlayasınız, ona görə də, nə haqda suallarınız olarsa, Piazzada
+          yazmaqdan çəkinməyin. Bu kiçik kodda, doğrudan da, çox ciddi şeylər
+          baş verir.
+        </p>
+        <pre><code class="language-python">print("Salam, əziz olimpiadaçılar!")</code></pre>
+        <p class="mt-4">
+          Yuxarıdakı isə eyni kodun Python 3 dilində yazılmasıdır. Necə də sadə
+          və gözəl, elə ingilis dili kimi oxunur. Bəs biz niyə istifadə etmirik
+          bu dildən? Python mənim ən sevdiyim 3 dildən biridir, amma olimpiada
+          üçün onu istifadə etməyəcəyik. Bir çox kodu çox qısa etsə də, sürəti
+          çox zəifdir. Bu yaxında, respublika olimpiadalarında bir şagirdin
+          Pythonda yazılmış düzgün həlli zaman limitini ötürdü (həmin halda həll
+          düz olsa da, bal verilmir). Eyni alqoritm isə C++-da çox rahatlıqla
+          keçir. Python çox vaxt 5-10 dəfə, bəzi hallarda isə (xüsusən,
+          alqoritmlərlə işləyəndə) 100 dəfəyə qədər gec işləyə bilir.
+        </p>
+        <p class="mt-4">
+          Öncədən dediyim kimi, mən istəyirəm ki, yazdığınız kodu hərtərəfli
+          başa düşəsiniz, amma olimpiadada bəzən bu şeylərdən keçə bilirik.
+          Sizdən bu tipli cəmi bir xahişim olacaq.
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cout &lt;&lt; "Salam, əziz olimpiaçılar!" &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p>
+          Yuxarıdakı kod əvvəlki kod ilə eyni işi görür, amma ilk sətir
+          fərqlidir və əlavə iki sətrimiz var. Adətən,
+          <code>iostream</code> bizə bəs etmir, məsələn,
+          <code>vector</code> tipindən istifadə etmək üçün
+          <code>#include &lt;vector></code> lazımdır. Olimpiadada bizim bunları
+          nə əlavə etməyə, nə də hansı funksiyanın və ya tipin hansı kitabxanada
+          əzbərləməyə vaxtımız yoxdur. Ona görə də, ikinci koddakı kitabxana
+          bizim üçün olimpiadada lazımlı bütün kitabxanaları idxal edir. Yəni,
+          biraz kompleks kodda 10-15 sətir idxal üçün yazmağa vaxtımız getmir
+          (xüsusən də canlı yarışlarda). Digər iki sətri daha dərindən izah
+          etməyəcəm, amma onlar isə giriş və çıxış əməllərinin daha sürətli
+          işləməyi üçündür. Onlar ən çox böyük girişi olan məsələlərdə proqramı
+          çox sürətləndirirlər. İstəməzsiniz ki, sizin olmayan səhvə görə az bal
+          alasınız, ona görə də, həmin iki sətri kodunuzda həmişə yazın. Qeyd
+          edim ki, ola bilsin bəziləriniz <code>printf</code> və
+          <code>scanf</code> funksiyaları ilə tanışsınız və onlardan istifadə
+          edirsiniz. Bu sətirlər onların işləməyinə problem yaradacaq (onlar
+          onsuz da sürətli işləyirlər). Amma mən çox ciddi şəkildə tövsiyə
+          edirəm ki, siz olimpiadalarda həmişə <code>cout</code> və
+          <code>cin</code> işlədəsiniz. Bu, həm də arzuolunmayan xətaların
+          qarşısını ala bilir.
+        </p>
+        <p class="mt-4">
+          Unutmayın ki, hər sətrin sonunda nöqtə-vergül işarəsi mütləqdir. Bu,
+          sətirləri ayırmaq üçün lazımdır. Bu arada, C++ kodlarını yazıb
+          çalışdırmaq üçün mən
+          <a
+            href="https://www.codeblocks.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Code::Blocks</a
+          >
+          proqramını tövsiyə edirəm. Yükləmək qaydaları üçün dərs videosuna
+          baxın (mingw-setup olan versiyanı
+          <a
+            href="http://www.codeblocks.org/downloads/binaries/"
+            target="_blank"
+            >bu linkdən</a
+          >
+          yükləyin).
+        </p>
+        <p class="mt-4">
+          İndi isə dilin təməllərinə keçək. Bilirəm ki, bir çoxunuz C++ dilində
+          artıq təcrübəlisiniz, amma ümid edirəm yuxarıdakı izahlar sizlərə də
+          maraqlı oldu. Çalışacam ki, arada daha az bilinən taktika və metodlar
+          da göstərim. C++ dili statik tiplərlə işləyir. Yəni, tiplər proqramın
+          başından bəlli olur və ən sona qədər eyni qalır. Bu o deməkdir ki,
+          eyni dəyişəndən həm söz ifadə etmək üçün, həm də ədəd ifadə etmək üçün
+          istifadə edə bilmərik (bu cümləyə sonra qayıdacağıq). Python,
+          Javascript və sair dillər isə dinamik tiplərdən istifadə edirlər,
+          onlarda çoxlu maraqlı imkanlar var. Amma proqramlaşdırmada ən böyük
+          prinsiplərdən biri imkanları artırmaq yox, onları qəsdən azaltmaqdır.
+          Bu, təhlükəsizlik üçündür. Ona görə də proqramçılar statik tipli
+          dillərə üstünlük verirlər (bu yaxında keçirilən məşhur bir sorğu bəlli
+          etdi ki, insanların çoxu JavaScript dili əvəzinə TypeScript dilində
+          yazırlar, hansı ki, eyni bilin statik tipli versiyasıdır). C++ dili
+          statik tipli olsa da, ona heç də təhlükəsiz dil demək olmaz, çünki
+          yaddaşla birbaşa işləyə bilirik. Gəlin nümunələrlə baxaq. C++-dakı
+          bəzi tiplər bunlardır (bəzi dəyərlər təxminidir):
+        </p>
+        <table class="mx-auto mt-2 w-full text-center">
+          <thead>
+            <tr>
+              <th class="p-1">Tip</th>
+              <th class="p-1">Ölçü</th>
+              <th class="p-1">Dəyərlər</th>
+              <th class="p-1">İstifadəsi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-1">int</td>
+              <td class="p-1">4 bayt (32 bit)</td>
+              <td class="p-1">müsbət-mənfi 2 milyarda qədər</td>
+              <td class="p-1">Tam ədədlər</td>
+            </tr>
+            <tr>
+              <td class="p-1">long long</td>
+              <td class="p-1">8 bayt (64 bit)</td>
+              <td class="p-1">müsbət-mənfi $9\cdot10^{18}$-ə qədər</td>
+              <td class="p-1">Böyük tam ədədlər</td>
+            </tr>
+            <tr>
+              <td class="p-1">char</td>
+              <td class="p-1">1 bayt (8 bit)</td>
+              <td class="p-1">standart yoxdur</td>
+              <td class="p-1">
+                <a
+                  href="https://az.wikipedia.org/wiki/ASCII"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >ASCII</a
+                >
+                üzrə hərf-simvollar
+              </td>
+            </tr>
+            <tr>
+              <td class="p-1">bool</td>
+              <td class="p-1">1 bit</td>
+              <td class="p-1">0 və ya 1</td>
+              <td class="p-1">Məntiq ifadələri</td>
+            </tr>
+            <tr>
+              <td class="p-1">double</td>
+              <td class="p-1">standart yoxdur</td>
+              <td class="p-1">standart yoxdur</td>
+              <td class="p-1">həqiqi ədədlər</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="mt-2">
+          <code>double</code> tipi üçün C++-da standart ölçü olmasa da, çox vaxt
+          8 bayt (32 bit olaraq nəzərdə tutulur) olur (kompilyatordan asılıdır).
+          C++-da başqa tiplər də var, məsələn, <code>unsigned int</code>,
+          <code>float</code>, <code>long double</code> və sair. Amma o tiplər
+          demək olar ki, olimpiadada heç vaxt istifadə olunmurlar. Yuxarıdakı
+          tiplərin hamısı ilə asanlıqla işləyə bilərik, gəlin nümunəyə baxaq:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int a = 2000000000; // 9 sıfır
+  long long b = 20000000000; // 10 sıfır
+  char c = 'k'; // nəzərə alın ki, char ' işərələri arasında yazılır
+  bool d = false; // və ya true
+  double pi = 3.14159;
+  return 0;
+}</code></pre>
+        <p class="mt-2">
+          Yaxşı xəbər budur ki, bu tiplərin hamısı <code>cin</code> və
+          <code>cout</code> ilə birbaşa işləyirlər. Yəni, heç bir əlavə zəhmət
+          olmadan, ardıcıl bütün tipləri daxil etmək və ya çıxışa vermək
+          mümkündür. Məsələn, bu proqram <code>int</code> və
+          <code>long long</code> tipləri daxil edir, ondan sonra isə onların və
+          0.5 ədədinin cəmini dəyişənə yazıb çıxışa verir:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int a;
+  long long b;
+  cin >> a >> b;
+  double c = a + b + 0.5;
+  cout &lt;&lt; c &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          İki <code>int</code> tipi girişə verib dörd sətirdə onların cəmini,
+          fərqini, hasilini, qismətini və böldükdə olan qalığı çıxışa verin.
+          <code>a</code> ədədini <code>b</code> ədədinə böldükdə qalan qalıq
+          modulo adlanan əməl ilə aparılır və <code>a % b</code> kimi yazılır.
+        </p>
+        <p class="mt-4">
+          Özünü yoxladakı proqramı mütləq edin, amma izahı dərs videosunda var.
+          O koddan istifadə edərək bir neçə maraqlı hallar müşahidə edin:
+        </p>
+        <ol class="list-decimal ml-8">
+          <li>10 və 4 ədədlərinin qisməti nəyə bərabərdir?</li>
+          <li>
+            2000000000 və 2000000000 ədədlərinin cəmi nəyə bərabərdir? Bəs
+            hasilləri?
+          </li>
+          <li>Girişə 3.5 və 5.9 verəndə nə baş verir?</li>
+        </ol>
+        <p class="mt-2">
+          Bu hallarda, ola bilsin, gözləmədiyiniz cavablar aldınız. Gəlin
+          bunları izah edək. C++ dilində çoxlu tip çevrilmələri avtomatik baş
+          verir və bu proses casting (<i>kastinq</i> kimi oxunur) adlanır. Bu,
+          bəzən çox yaxşıdır, bəzən isə bizi çaşdıra bilir. Bu qayda bəzən qəliz
+          işləyir, amma yadda saxlayın ki, iki eyni tip arasında baş verən
+          əməllər yenə həmin tiplə nəticələnir. Yəni, iki <code>int</code> tipi
+          arasındakı əməldə nəticə <code>int</code> tipində olacaq. 10 və 4
+          ədədlərinin qisməti 2.5 ədədinə bərabər olsa da, orada avtomatik
+          olaraq <code>int</code> tipinə çevrilmə baş verir və nəticə 2 olur.
+          Qeyd edin ki, bu çevrilmə yuvarlaqlaşdırmır, sadəcə, nöqtədən sonrakı
+          hissəni silir. Sonrakı hal da maraqlıdır. Dediyimiz kimi, nəticə
+          <code>int</code> tipində olmalıdır, amma cavab bu tipin dəyərləri
+          aralığına yerləşmir. Ona görə də, cəm üçün çıxışa -294967296 kimi
+          qəribə ədəd verilir. Bu xətaya overflow (<i>overflou</i> kimi oxunur)
+          deyilir. Sonuncu hal isə ən qəribəsidir. Ədədlərin cəmi olaraq 3
+          görəcəksiniz, amma o ədədlərin <code>int</code> tipinə çevrilməsində
+          belə cəm 3 olmur. Koda həmin girişə verilən ədədlərin özlərini çıxışa
+          verən sətir də artırın (mən dəyişənlərimi <code>a</code> və
+          <code>b</code> adlandırmışam):
+        </p>
+        <pre><code>cout &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; endl;</code></pre>
+        <p class="mt-2">
+          Girişə 3.5 və 5.9 verdikdə, yuxarıdakı sətir çıxışa 3 və 0 verir. Axı
+          0 haradan gəldi? Bu gözlənilməz xətanın səbəbi odur ki, girişə verilən
+          tiplər <code>int</code> olduqda, <code>cin</code> də o tipləri daxil
+          etmək üçün "hazırlaşır". Amma biz girişə başqa tiplər veririk, onda da
+          <code>cin</code> onları başa düşə bilmir və işləmə prinsipi pozulur.
+        </p>
+        <p class="mt-2">
+          Bəs bu tipli xətalardan necə qorunaq? Tiplərin olmağı pisdirmi? İlk
+          öncə, bizə verilmiş məsələnin şərtlərinə baxmaq lazımdır. Bütün
+          olimpiada məsələlərində girişə veriləcək hər şeyin tipi və ölçüləri
+          haqqında yazılır, biz də ona uyğun tiplər seçməliyik. Məsələn, girişə
+          verilənlər 1-dən 2 milyarda qədər tam ədədlərdirsə, biz onda
+          <code>int</code> tipindən onları saxlamaq üçün istifadə edə bilərik.
+          Amma bu, hər şey demək deyil. Məsələdə bizə o ədədlərin cəmini və
+          hasilini çıxışa vermək tələb olunursa, biz analiz etməliyik ki, bu
+          tiplər bizə yetəcəkmi. Məsələn, bayaq gördüyümüz kimi, iki sayda 2
+          milyard ədədinin nə cəmi, nə də hasili <code>int</code> tipinə uyğun
+          gəlir. Onda, belə bir kod yazmağı yoxlaya bilərik:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int a, b;
+  cin >> a >> b;
+  long long cem = a + b;
+  long long hasil = a * b;
+  cout &lt;&lt; cem &lt;&lt; " " &lt;&lt; hasil &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-2">
+          Bəs bu kod işləyirmi? Yoxlasaq, görürük ki, bu kod da eyni
+          nəticələnir. Bunun səbəbi isə odur ki, ifədənin sağ tərəfində tip
+          dəyişməsi baş vermir, yəni, məsələn <code>a+b</code> ifadəsi
+          <code>int</code> kimi hesablanır, onun dəyəri isə
+          <code>long long</code> tipinə yazılır. Yaxşı, bəs onda biz nə edək?
+          Belə hallarda, mən sizə 2 yol göstərəcəm. Biri ən asanıdır: elə girişə
+          verilən tiplər üçün də <code>long long</code> istifadə etmək. Əgər
+          biliriksə ki, bizə <code>long long</code> tipi həmişə yetərli olacaq,
+          onu hər şey üçün istifadə etmək bizim problemi aradan götürər. Bu,
+          həqiqətən də çox vaxt kömək olur (ilk olaraq elə bunu yoxlamağı
+          tövsiyə edirəm), amma yadda saxlayın ki, 2 dəfə çox yaddaş və 2 dəfəyə
+          qədər çox zaman istifadə edir. Adətən, məsələdə verilən yaddaş limiti
+          çox olur, amma zaman limiti önəmlidir. Əgər həllinizin düzgün olduğunu
+          düşünürsünüzsə, amma zaman limitinə uyğun gəlmirsə, bu, tipləri
+          səmərəsiz istifadə etməkdən baş verə bilər. Bu halda biraz daha çox
+          diqqət və zəhmət lazımdır.
+        </p>
+        <p class="mt-2">
+          C++-da avtomatik çevrilmə qaydaları var. Məsələn, cəm əməlini etdikdə,
+          C++ nəticəni avtomatik olaraq oradakı "ən böyük" tipə saxlayır. Yəni,
+          məsələn, <code>long long</code> və <code>int</code> üzərində cəm
+          etsək, nəticə <code>long long</code> olacaq. Eyni qayda hasil, qismət
+          və çıxma əməliyyatları üçün də keçərlidir. Onda biz istədiyimiz
+          nəticələri düzgün almaq üçün tipləri "məcbur edə" bilərik.
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int a, b;
+  cin >> a >> b;
+  long long cem = (long long)a + b;
+  long long hasil = (long long)a * b;
+  cout &lt;&lt; cem &lt;&lt; " " &lt;&lt; hasil &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-2">
+          Bu kod <code>a</code> dəyişənini hər iki sətirdə
+          <code>long long</code> tipinə keçirir. Bu, dəyişənin öz tipini
+          dəyişmir, sadəcə, həmin ifadəni hesablamazdan əvvəl,
+          <code>long long</code>-a çevrilmiş <code>a</code> hesablayır və onu
+          istifadə edir. İndi isə, dediyimiz kimi, o ifadələrdə avtomatik
+          çevrilmə baş verir. Amma bir şeyə də diqqət etməliyik. Bu çevrilməni
+          biz həmişə ən əvvəldə etməliyik, çünki C++ ifadələri başdan əvvələ
+          hesablaya-hesablaya gedir. Məsələn, bu kod düzgün işləmir:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int a, b;
+  cin >> a >> b;
+  long long cem = a + b + (long long)2;
+  long long hasil = a * b * (long long)2;
+  cout &lt;&lt; cem &lt;&lt; " " &lt;&lt; hasil &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-2">
+          Bunun səbəbi isə cəmli ifadə <code>long long</code> tipinə
+          çevrilməzdən əvvəl overflow baş verməsidir. Bu, həqiqətən də,
+          başağrıdan və qəliz mövzudur, amma əmin olun ki, çoxlu məsələ həlli
+          ilə artıq bunlara öyrəşəcəksiniz. Bu tip çevrilməsi, əslində, bəzən
+          bizə kömək də ola bilir. Burada ən çox <code>char</code> və
+          <code>bool</code> çevrilmələri maraqlıdır. Gəlin biraz da
+          <code>char</code> tipi haqqında da danışaq.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Girişə 3 <code>int</code> tipli ədəd verilir, onların hasilinin
+          milyard ədədinə böldükdə alınan qalığı tapın. Əmin olun ki, kodunuzda
+          overflow xətası yoxdur. Yoxlamaq üçün girişə üç ədədi də 1000000001
+          olaraq verin, çıxışa kodunuz 1 verməlidir.
+        </p>
+        <p class="mt-4">
+          C++ dilində <code>char</code> tipi
+          <a href="https://az.wikipedia.org/wiki/ASCII" target="_blank"
+            >ASCII</a
+          >
+          (<i>aski</i> kimi oxunur) sistemindən istifadə edir. Bu sistemdə
+          ingilis dilindəki bütün hərflər və bəzi simvollar var. Olimpiadada
+          yalnız hərflər haqqında öyrənmək bəsdir. Yadda saxlayın ki, 26 hərf
+          var. Bu cədvəldə onların hərəsini bir ədəd göstərir (həm böyük, həm
+          kiçik hərflər üçün ayrı bir ədəd var). Bu ədədlərə biz ASCII kodu
+          deyirik. Məsələn, <code>A</code> hərfinin kodu 65,
+          <code>a</code> hərfinin kodu isə 97-dir. Yəni, əslində,
+          <code>char</code> tipi ilə ədəd kimi də işləyə bilərik. Bayaq
+          gördüyümüz kimi, özümüz bu çevrilməni apara bilərik. Gəlin C++-da iki
+          hərfi <code>int</code> tipinə çevirək:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  char a = 'a', A = 'A';
+  cout &lt;&lt; (int)a &lt;&lt; " " &lt;&lt; (int)A &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-2">
+          Yadda saxlayın ki, bu kodlamada kiçik hərflər də, böyük hərflər də
+          əlifba sırası ilə ardıcıl gəlirlər (kiçik hərflər 97-dən 122-ə qədər,
+          böyük hərflər isə 65-dən 90-a qədər).
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Girişə hərf verilir, əlifbada ondan sonra gələn hərfi müəyyən edən kod
+          yazın (girişə z və ya Z verilmir).
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Girişə böyük hərf verilir, çıxışa o hərfin kiçiyini verən kod yazın.
+        </p>
+        <p class="mt-4">
+          İndi isə biraz da <code>bool</code> tipinə baxaq. C++-da bu tipin
+          aldığı dəyərlər <code>true</code> və <code>false</code> ola bilir,
+          amma onları 1 və 0 ilə də əvəz etmək olar. Bu məntiqlə, biz bu tipin
+          əvəzinə həmişə <code>int</code> istifadə edə bilərdik, amma burada
+          <code>int</code> və <code>long long</code> arasındakı problem yenə
+          yaranır: <code>bool</code> 32 dəfə daha az yaddaş tutur və 32 (bəzi
+          kompilyatorlarda 64) dəfəyə qədər sürətli işləyə bilir (təbii ki,
+          burada söhbət bütün kodun işləmə zamanından getmir. ciddi sürətlənməni
+          ancaq çoxlu bool tiplərlə işləyəndə ala bilərsiniz).
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Güclülər üçün tövsiyə</span>
+          <br />
+          <code>bitset</code> tipi haqqında öyrənin və məsələlər edin. Piazza-da
+          bu haqda soruşmaqdan çəkinməyin.
+        </p>
+        <p class="mt-4">
+          Sadə tiplər haqqında söhbəti avtomatik və əl-ilə çevrilməni daha da
+          aydın etməklə bitirək. Qısaca, qayda belədir ki, ifadəni dəyişənə
+          saxlamaq istəyəndə, o ifadə dəyişənin tipinə avtomatik çevrilməyə
+          çalışacaq. Həm təəssüflə, həm də sevinərək deyirəm ki, yuxarıda
+          öyrəndiyimiz tiplərdə avtomatik çevrilmələr mümkündür, yəni, 97.5
+          ədədini <code>char</code> tipinə çevirə bilərik. Bu bizə bəzən kod
+          yazanda kömək edir, bəzən isə səhvlərə yol açmağa kömək edir. Məsələn,
+          yuxarıda gördüyümüz kimi, <code>double</code> tipi nəzərdə tutduğumuz
+          halda <code>int</code> yazsaq da, kod çalışacaq, amma səhv çalışacaq.
+          Bir də onu yadda saxlayın ki, dəyişənlərə yazılmada sağ tərəf müstəqil
+          olaraq hesablanır, yəni, öyrəndiyimiz kimi,
+          <code>long long cem = a + b;</code> kodunda sağ tərəf avtomatik olaraq
+          <code>long long</code> tipinə çevrilmir (birinci öz tipində
+          hesablanır, sonra isə həmin nəticə çevrilir, amma artıq həmin nəticə
+          səhvdir), biz onu əl-ilə çevirməliyik. Bunun üçün isə, dəyişənin və ya
+          ifadənin soluna tipi mötərizədə yaza bilərik.
+        </p>
+        <p class="mt-2">
+          Ümid edirəm, tiplər haqqında bunları öyrənmək maraqlı oldu. Onlarla
+          bağlı çoxlu xətalar etmək olur və olimpiadalarda xətalar acımasız
+          şəkildə çox vaxt 0 balı ilə nəticələnir, ona görə də, diqqətli
+          olmalıyıq. İndi isə <code>bool</code> tipi haqqında yox, amma o tipli
+          ifadələr haqqında danışaq. Sonra isə şərtlərə keçid edəcəyik. Şərtlər
+          yaratmaq üçün ən çox istifadə etdiyimiz əməllər bunlardır:
+        </p>
+
+        <ul class="list-disc ml-8 mt-4">
+          <li>Bərabərlik: <code>==</code></li>
+          <li>Bərabərsizlik: <code>!=</code></li>
+          <li>Böyüklük: <code>></code></li>
+          <li>Böyük-bərabərlik: <code>>=</code></li>
+          <li>Kiçiklik: <code>&lt;</code></li>
+          <li>Kiçik-bərabərlik: <code>&lt;=</code></li>
+          <li>"Və" əməli: <code>&amp;&amp;</code></li>
+          <li>"Və ya" əməli: <code>||</code></li>
+          <li>
+            "Yox" əməli: <code>!</code> (bu əməl ifadəni tərsinə dəyişdirir,
+            <code>while</code> dövrlərində buna qayıdacağıq)
+          </li>
+        </ul>
+
+        <p class="mt-4">
+          Bu əməllərin hamısının istifadəsi bizə <code>bool</code> tipində
+          nəticələr verir. Onda biz belə ifadə yaza bilərik:
+        </p>
+        <pre><code>bool z = (a &lt; b) && (c >= d || e == f);</code></pre>
+        <p class="mt-4">
+          Bu dəyişənin nəticəsini belə də anlaya bilərik: <code>z</code> o vaxt
+          <code>true</code> dəyəri alır ki, <code>a</code> <code>b</code>-dən
+          kiçikdir və növbəti iki şərtdən ən azı biri ödənir: ya <code>c</code>
+          <code>d</code>-dən böyükdür, ya da <code>e</code> və
+          <code>f</code> bərabərdirlər. Düzünü desəm, bu cümləni yazanda çoxlu
+          çətinliklərlə qarşılaşdım, çünki <code>və</code> və
+          <code>və ya</code> ifadələrini dildə bir-birindən ayırmaq çətindir.
+          C++ bunu danışdığımız dillərdən yaxşı bacarır. Bu mövzuda ən çox
+          gördüyüm 2 səhv var: mötərizələrin istifadə olunmaması və
+          <code>==</code> əvəzinə <code>=</code> yazılması. İlk səhvi araşdıraq.
+          Məsələn, tutaq ki, bayaqkı ifadəni belə yazdıq:
+        </p>
+        <pre><code>bool z = a &lt; b && c >= d || e == f;</code></pre>
+        <p class="mt-4">
+          Düzünü desəm, heç bilmirəm ki, bu bayaqkı ilə eyni nəticəni verir ya
+          yox, amma bu kod tamamilə anlaşılmazdır. Bilinmir ki, burada ilk iki
+          şərt qruplaşmaq istənilib (bunun kimi:
+          <code>(a &lt; b && c >= d) || (e == f)</code>), yoxsa əvvəl yazdığım
+          kimi qruplaşma gedir. Ona görə də, <code>&amp;&amp;</code> və
+          <code>||</code> əməllərindən istifadə etdikdə, mütləq mötərizələrdən
+          lazımi gəldiyi qədər bol istifadə edin. Digər səhv isə adətən
+          diqqətsizlikdən əmələ gəlir, məsələn belə şərtlər yazılır:
+        </p>
+        <pre><code>bool z = (a = b);</code></pre>
+        <p class="mt-4">
+          Çalışın ki, bərabərlik üçün həmişə (xüsusən də birazdan danışacağımız
+          <code>if</code> şərtli ifadələrinin içində) düzgün əməldən istifadə
+          edin.
+        </p>
+        <!-- <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Dil problemi?</span>
+          <br />
+          "<code>if</code> şərti" demək hərfi tərcümədə "şərt şərti" kimi
+          səslənir. İngilis dilində buna "<code>if</code> statement", yəni, "if
+          bəyanı" deyirlər. Dilimizdə isə buna uyğun gələn yaxşı söz ağlıma
+          gəlmir. Sizin tövsiyəniz varmı? Piazza-da bildirin.
+        </p> -->
+        <p class="mt-4">
+          İndi isə keçək şərtli ifadələrə. Necə edək ki, kodumuz fərqli şərtlər
+          altında fərqli davransın? Burada köməyə <code>if</code> çatır. Onun
+          daxilinə yuxarıda öyrəndiyimiz ifadələr ilə yaratdığımız şərt yaza
+          bilərik, sonra isə onlar üçün kod blokları açırıq. Məsələn:
+        </p>
+        <pre><code>#include &lt;iostream>
+using namespace std;
+int main() {
+  cout &lt;&lt; "Yaşınızı yazın: ";
+  int age;
+  cin >> age;
+  cout &lt;&lt; endl; // özünü yoxla: bu sətri yazmasaq nə baş verər?
+  if (age &lt; 18) {
+    cout &lt;&lt; "Siz sürücülük vəsiqəsi ala bilməzsiniz!";
+  } else {
+    cout &lt;&lt; "Siz sürücülük vəsiqəsi ala bilərsiniz!";
+  }
+  cout &lt;&lt; endl; // sonda yeni sətir qoymaq adətən yaxşıdır.
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          <code>else</code> (<i>els</i> kimi oxunur) ifadəsi isə şərtin əksi
+          halında baş verir. Yəni, yaşın ən azı 18 olduğunu yoxlamaq üçün
+          <code>if (age >= 18)</code> yazmağa ehtiyac yoxdur. Şərtləri daha da
+          uzatmaq mümkündür. Məsələn, belə bir qayda olsa idi ki, yaş 70-i
+          keçdikdə yalnız əvvəllər sürücülük vəsiqəsi olanlara yenisi verilir
+          (təzələmək məqsədi ilə), onda kodu belə dəyişə bilərdik:
+        </p>
+        <pre><code>#include &lt;iostream>
+using namespace std;
+int main() {
+  cout &lt;&lt; "Yaşınızı yazın: ";
+  int age;
+  cin >> age;
+  cout &lt;&lt; endl; // özünü yoxla: bu sətri yazmasaq nə baş verər?
+  if (age &lt; 18) {
+    cout &lt;&lt; "Siz sürücülük vəsiqəsi ala bilməzsiniz!";
+  } else if (age > 70) {
+    cout &lt;&lt; "Siz sürücülük vəsiqəsini yalnız yeniləyə bilərsiniz!";
+  } else {
+    // burada yaş 18 və 70 arasındadır
+    cout &lt;&lt; "Siz sürücülük vəsiqəsi ala bilərsiniz!";
+  }
+  cout &lt;&lt; endl; // sonda yeni sətir qoymaq adətən yaxşıdır.
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          İç-içə şərtləri də yazmaq mümkündür, amma kodu sadə tutmaq üçün bundan
+          çəkinmək lazımdır. Məsələn, yuxarıdakı eyni kodu belə də yaza bilərik:
+        </p>
+        <pre><code>#include &lt;iostream>
+using namespace std;
+int main() {
+  cout &lt;&lt; "Yaşınızı yazın: ";
+  int age;
+  cin >> age;
+  cout &lt;&lt; endl; // özünü yoxla: bu sətri yazmasaq nə baş verər?
+  if (age &lt; 18) {
+    cout &lt;&lt; "Siz sürücülük vəsiqəsi ala bilməzsiniz!";
+  } else {
+    if (age > 70) {
+      cout &lt;&lt; "Siz sürücülük vəsiqəsini yalnız yeniləyə bilərsiniz!";
+    } else {
+      // burada yaş 18 və 70 arasındadır
+      cout &lt;&lt; "Siz sürücülük vəsiqəsi ala bilərsiniz!";
+    }
+  }
+  cout &lt;&lt; endl; // sonda yeni sətir qoymaq adətən yaxşıdır.
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          Görə bilərik ki, bu kodda "dərinlik" daha çoxdur və anlamağı daha
+          çətindir. Düzdür, olimpiadalarda çalışmalıyıq ki, sürətli yazaq, amma
+          yaxşı kod yazmaq da önəmlidir ki, sonra səhvləri tapmağa vaxt
+          itirməyək.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Girişə iki <code>int</code> tipində ədəd verilir, onların böyüyünü
+          çıxışa verən proqram yazın.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Girişə <code>char</code> tipində simvol verilir, onun kiçik hərf olub
+          olmadığını yoxlayan kod yazın.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Girişə <code>int</code> tipində 3 ədəd verilir, onların hasilinin
+          mənfi, sıfır və ya müsbət olduğunu müəyyən edən kod yazın. Nəzərə alın
+          ki, bu hasili hesablamaq <code>long long</code> tipi ilə mümkün olmaz.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Girişə dörd həqiqi ədəd verilir, həmin ədədləri düzbucaqlının
+          tərəfləri kimi istifadə edə bilərikmi sualına cavab verən proqram
+          yazın.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/en/problems/206" target="_blank"
+            >Turist məsələsini</a
+          >
+          həll edin.
+        </p>
+        <p class="mt-4">
+          Əla, artıq proqramın axını üçün ən əsas şeylərdən birini öyrəndik.
+          İndi isə marağı daha da artıracağıq. İlk olaraq <code>while</code>,
+          sonra isə <code>for</code> dövrlərinə baxaq. Dövrlərin məqsədi işimizi
+          ümumiləşdirməkdir. Məsələn, hansısa şeyi "n sayda ədəd üçün" və ya
+          "ədədin bütün rəqəmləri üçün" ediriksə, deməli, dövr istifadə
+          etməliyik. <code>while</code> (<i>vayl</i> kimi oxunur) sözünün
+          tərcüməsi "nə qədər ki" deməkdir. Yəni, nə qədər ki, verilmiş şərt
+          ödənir, hansısa kodu icra edəcəyik.
+        </p>
+      </section>
+    </main>
+    <script src="/dist/prism.js"></script>
+  </body>
+</html>

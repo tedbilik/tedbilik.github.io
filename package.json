@@ -1,0 +1,23 @@
+{
+  "name": "tedbilik.github.io",
+  "version": "1.0.0",
+  "description": "TED Bilik Kursları İnformatika Olimpiada Hazırlığı - Sinif Bəlirləmə Sorğusu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tedbilik/tedbilik.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tedbilik/tedbilik.github.io/issues"
+  },
+  "homepage": "https://github.com/tedbilik/tedbilik.github.io#readme",
+  "devDependencies": {
+    "prettier": "2.8.3",
+    "tailwindcss": "^3.2.4"
+  }
+}

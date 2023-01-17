@@ -5,230 +5,95 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TED Bilik Kursları</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        future: {
-          hoverOnlyWhenSupported: true,
-        },
-      };
-    </script>
+    <link rel="stylesheet" href="/dist/styles.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap");
       body {
         font-family: "Source Sans Pro", sans-serif;
       }
     </style>
-    <script src="./app.js"></script>
-
-    <script type="module">
-      import {
-        createApp,
-        nextTick,
-      } from "https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.es.js";
-
-      createApp({
-        name: null,
-        grade: null,
-        phoneNum: null,
-        classType: "canlı",
-        email: null,
-        qIndex: null,
-        answers: [],
-        correctCount: 0,
-        doneMessage: null,
-
-        handleClick(ix) {
-          this.answers.push({
-            sual: questions[this.qIndex].prompt,
-            cavab: questions[this.qIndex].choices[ix],
-          });
-          if (`choice-${ix}` === questions[this.qIndex].correct)
-            this.correctCount++;
-          this.qIndex++;
-          while (questions[this.qIndex].reset) {
-            if (this.correctCount < questions[this.qIndex].need) {
-              const f = questions[this.qIndex].fail;
-              fetch("https://3d459b3.online-server.cloud/create", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  name: this.name,
-                  grade: this.grade,
-                  answers: this.answers,
-                  phoneNumber: this.phoneNum,
-                  email: this.email,
-                  classType: this.classType,
-                  decision: f,
-                }),
-              });
-
-              if (f === 1) {
-                this.doneMessage =
-                  "Sizin İ1 sinfinə uyğun olduğunuzu düşünürük! Əgər bu sinifdə hansı mövzuların əhatə olunacağı və ya başqa məsələ ilə bağlı suallarınız olarsa, bizimlə mütləq əlaqə saxlayın. Sizi kursumuzda görmək çox xoş olardı!";
-              }
-              if (f === 1.5) {
-                this.doneMessage =
-                  "Əla! Sizin üçün İ1 sinfini tövsiyə edirik, amma yaxşı nəticə göstərdiyiniz üçün İ2 sinfi də uyğun ola bilər. Zəhmət olmasa, bizimlə əlaqə saxlayın və sizin üçün kursun müəllif-müəllimləri Abutalıb-Barış Namazov və Emin Orucov ilə görüş təşkil edək ki, sinif seçiminizi dəqiqləşdirəsiniz. Sizi kursumuzda görmək çox xoş olardı!";
-              }
-              if (f === 2) {
-                this.doneMessage =
-                  "Çox əla nəticə göstərdiniz! Sizin üçün İ2 sinfinin uyğun olduğunu düşünürük. Əgər bu sinifdə hansı mövzuların əhatə olunacağı və ya başqa məsələ ilə bağlı suallarınız olarsa, bizimlə mütləq əlaqə saxlayın. Sizi kursumuzda görmək çox xoş olardı!";
-              }
-              if (f === 2.5) {
-                this.doneMessage =
-                  "Təbriklər, çox əla nəticə göstərdiniz! Sizin üçün İ2 sinfini tövsiyə edirik, amma yaxşı nəticə göstərdiyiniz üçün İ3 sinfi də uyğun ola bilər. Zəhmət olmasa, bizimlə əlaqə saxlayın və sizin üçün kursun müəllif-müəllimləri Abutalıb-Barış Namazov və Emin Orucov ilə görüş təşkil edək ki, sinif seçiminizi dəqiqləşdirəsiniz. Sizi kursumuzda görmək çox xoş olardı!";
-              }
-              if (f === 3) {
-                this.doneMessage =
-                  "Təbrik edirik, ən yaxşı nəticəni göstərdiniz! Sizin üçün İ3 sinifini uyğun görürük. Bu sinifin hazırlığı intensiv və dərindir, ona görə də, sizə təklif edirik ki, bizimlə əlaqə saxlayın və sizin üçün kursun müəllif-müəllimləri Abutalıb-Barış Namazov və Emin Orucov ilə görüş təşkil edək. Sizi kursumuzda görmək çox xoş olardı!";
-              }
-            }
-            this.correctCount = 0;
-            this.qIndex++;
-          }
-        },
-      }).mount();
-    </script>
   </head>
-  <body class="bg-cyan-900">
+  <body class="bg-neutral-800">
     <main
-      class="xs:text-lg text-slate-100 flex h-screen w-screen flex-col items-center sm:text-xl md:text-2xl max-w-4xl mx-auto"
-      v-scope
+      class="text-neutral-200 flex h-screen w-screen flex-col items-center max-w-4xl mx-auto text-xl"
     >
       <header class="flex flex-col items-center justify-center gap-3 p-5">
         <img
-          src="./ted-logo.png"
+          src="/ted-logo.png"
           alt="ted bilik"
-          class="w-8/12 max-w-lg rounded-2xl bg-slate-100 p-4"
+          class="w-8/12 max-w-md rounded-2xl bg-neutral-200 p-4"
         />
-        <h1 class="font-bold text-slate-100 text-center flex flex-col">
-          <span>İnformatika Olimpiadası Hazırlığı üçün</span>
-          <span>Sinif Bəlirləmə Sorğusu</span>
-        </h1>
-        <h2 class="text-slate-100 text-center" v-if="qIndex === null">
-          Bu sorğunun məqsədi sizə uyğun olan hazırlıq sinfini seçməkdir. Ən
-          uğurlu nəticə üçün sorğunu bir dəfə doldurun. Sorğu verdiyiniz
-          cavablara əsasən daha tez sonlana bilər. Əgər hansısa sualınız
-          yaranarsa, bizimlə əlaqə saxlayın, kömək etməyə hazırıq!
-        </h2>
-      </header>
-      <div id="survey">
-        <div v-if="doneMessage" class="px-5 mb-4 flex flex-col items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="64"
-            height="64"
-            fill="#4ade80"
-            class="bi bi-check-circle-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
-            />
-          </svg>
-          <p class="mt-2 mb-4 text-center">
-            Sorğunu tamamladığınız üçün təşəkkür edirik!
-          </p>
-          <p class="font-sans text-center font-semibold text-green-400">
-            {{doneMessage}}
-          </p>
-        </div>
-        <form
-          id="start"
-          class="flex flex-col gap-3 justify-center items-center"
-          @submit.prevent="qIndex = 1"
-          v-else-if="qIndex === null"
+        <h1
+          class="font-bold text-neutral-200 text-center flex flex-col text-2xl"
         >
-          <label for="name">Ad və soyadınız</label>
-          <input
-            class="text-black p-1"
-            placeholder="Barış Namazov"
-            autocomplete="off"
-            id="name"
-            name="name"
-            v-model="name"
-            required
-          />
-          <label for="phoneNum">Əlaqə nömrəniz</label>
-          <input
-            class="text-black p-1"
-            placeholder="055 939 88 48"
-            autocomplete="off"
-            id="phoneNum"
-            name="phoneNum"
-            v-model="phoneNum"
-            required
-          />
-          <label for="email">Email adresiniz</label>
-          <input
-            class="text-black p-1"
-            placeholder="ted@bilik.edu.az"
-            autocomplete="off"
-            id="email"
-            name="email"
-            type="email"
-            v-model="email"
-          />
-          <label for="grade">Sinfiniz</label>
-          <select
-            id="grade"
-            name="grade"
-            required
-            class="text-black p-1"
-            v-model="grade"
-          >
-            <option value="4-">4 və ya aşağı</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="other">Başqa</option>
-          </select>
-          <label for="classType">Maraqlandığınız dərs növü</label>
-          <select
-            id="classType"
-            name="classType"
-            required
-            class="text-black p-1"
-            v-model="classType"
-          >
-            <option value="canlı">Canlı</option>
-            <option value="online">Onlayn</option>
-          </select>
-          <button
-            type="submit"
-            class="min-w-full rounded-lg bg-cyan-700 py-1 text-center hover:cursor-pointer hover:bg-cyan-800"
-          >
-            Başla
-          </button>
-        </form>
-        <div v-else class="flex flex-col justify-center items-center">
-          <span class="mb-3 font-semibold text-slate-100"
-            >Sual {{answers.length+1}}</span
-          >
+          <span>TED Kursları</span>
+        </h1>
+      </header>
+      <section class="flex flex-col gap-5">
+        <a href="/informatika" class="text-inherit no-underline">
           <article
-            class="mx-2 flex flex-col items-center justify-center gap-3 rounded-xl border-2 p-3 text-slate-100"
+            class="w-[90%] mx-auto border border-neutral-200 rounded-xl p-3 flex gap-3 hover:bg-neutral-900 hover:cursor-pointer"
           >
-            <p class="mb-2 text-center" v-html="questions[qIndex].prompt"></p>
-
-            <button
-              class="min-w-full rounded-lg bg-cyan-700 py-1 text-center hover:cursor-pointer hover:bg-cyan-800"
-              v-for="(c, ix) in questions[qIndex].choices"
-              id="qb"
-              @click="handleClick(ix)"
-            >
-              {{c}}
-            </button>
+            <div class="flex flex-col gap-1">
+              <span>
+                İnformatika Olimpiadalarına Hazırlıq Kursları &mdash; sinif
+                bəlirləmə sorğusu
+              </span>
+              <span class="text-base"
+                >Əgər olimpiadalarla hazırlıqla maraqlanırsınızsa, bu sorğunu
+                dolduraraq hansı sinifə uyğun gəldiyinizi öyrənə
+                bilərsiniz.</span
+              >
+            </div>
+            <div class="ml-auto flex items-center scale-150">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-chevron-right"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                />
+              </svg>
+            </div>
           </article>
-        </div>
-        <div v-if="doneMessage" class="h-px w-full my-2 bg-slate-50"></div>
-        <p v-if="doneMessage" class="flex flex-col px-5 mb-5">
+        </a>
+        <a href="/kamp" class="text-inherit no-underline">
+          <article
+            class="w-[90%] mx-auto border border-neutral-200 rounded-xl p-3 flex gap-3 hover:bg-neutral-900 hover:cursor-pointer"
+          >
+            <div class="flex flex-col gap-1">
+              <span> İnformatika Olimpiadası &mdash; Qış Kampı 2023</span>
+              <span class="text-base"
+                >Yarımfinal mərhələsinə hazırlıq üçün qış kampının bütün
+                materialları burada yerləşdiriləcək.</span
+              >
+            </div>
+            <div class="ml-auto flex items-center scale-150">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-chevron-right"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                />
+              </svg>
+            </div>
+          </article>
+        </a>
+      </section>
+      <section class="mt-5">
+        <div class="h-px w-full my-2 bg-slate-50"></div>
+        <p class="flex flex-col px-5 mb-5">
           <span class="italic">Əlaqə nömrələrimiz:</span>
           <span class="pl-8">+994 55 939 88 48 (Zəng və Whatsapp)</span>
           <span class="pl-8">+994 12 538 29 85</span>
@@ -244,8 +109,7 @@
             Universitetə yaxın)</span
           >
         </p>
-        <div class="h-2 w-full"></div>
-      </div>
+      </section>
     </main>
   </body>
 </html>
