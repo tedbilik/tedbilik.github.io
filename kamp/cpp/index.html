@@ -61,9 +61,27 @@
     <main
       class="text-neutral-200 min-h-screen w-screen px-5 max-w-4xl text-lg mx-auto py-5 language-cpp"
     >
-      <h1 class="flex justify-center text-3xl">
-        Dərs 1: C++ dilinin olimpiada üçün təməlləri
-      </h1>
+      <header class="flex flex-col items-center">
+        <a href=".." class="mb-2 flex items-center gap-2 no-underline">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-90deg-up"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"
+            />
+          </svg>
+          <span>Geri qayıt</span></a
+        >
+        <h1 class="flex justify-center text-3xl">
+          Dərs 1: C++ dilinin olimpiada üçün təməlləri
+        </h1>
+      </header>
       <section class="mt-6">
         <h2 class="text-2xl">Dərsin videosu</h2>
         <p class="mt-2">
@@ -583,6 +601,14 @@ int main() {
           səhvdir), biz onu əl-ilə çevirməliyik. Bunun üçün isə, dəyişənin və ya
           ifadənin soluna tipi mötərizədə yaza bilərik.
         </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          Əgər bilirsinizsə, danışdığımız tiplərin yaddaşda necə saxlanıldığı
+          haqqında Piazza-da qeyd (Note) yazın. İzahı yaxşı etmək üçün şəkillər
+          də çəkə bilərsiniz. Ən aydın bir və ya bir neçə izahı gələn dərsin
+          qeydlərində müəllif(lər)in adı ilə paylaşacam.
+        </p>
         <p class="mt-2">
           Ümid edirəm, tiplər haqqında bunları öyrənmək maraqlı oldu. Onlarla
           bağlı çoxlu xətalar etmək olur və olimpiadalarda xətalar acımasız
@@ -602,8 +628,8 @@ int main() {
           <li>"Və" əməli: <code>&amp;&amp;</code></li>
           <li>"Və ya" əməli: <code>||</code></li>
           <li>
-            "Yox" əməli: <code>!</code> (bu əməl ifadəni tərsinə dəyişdirir,
-            <code>while</code> dövrlərində buna qayıdacağıq)
+            "Yox" əməli: <code>!</code> (bu, şərtin əksini göstərir. bəzən
+            istəmədiyimiz halı, yəni, şərtin əksini yazmaq daha asandır.)
           </li>
         </ul>
 
@@ -648,9 +674,11 @@ int main() {
           daxilinə yuxarıda öyrəndiyimiz ifadələr ilə yaratdığımız şərt yaza
           bilərik, sonra isə onlar üçün kod blokları açırıq. Məsələn:
         </p>
-        <pre><code>#include &lt;iostream>
+        <pre><code>#include &lt;bits/stdc++.h>
 using namespace std;
 int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
   cout &lt;&lt; "Yaşınızı yazın: ";
   int age;
   cin >> age;
@@ -671,9 +699,11 @@ int main() {
           keçdikdə yalnız əvvəllər sürücülük vəsiqəsi olanlara yenisi verilir
           (təzələmək məqsədi ilə), onda kodu belə dəyişə bilərdik:
         </p>
-        <pre><code>#include &lt;iostream>
+        <pre><code>#include &lt;bits/stdc++.h>
 using namespace std;
 int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
   cout &lt;&lt; "Yaşınızı yazın: ";
   int age;
   cin >> age;
@@ -693,9 +723,11 @@ int main() {
           İç-içə şərtləri də yazmaq mümkündür, amma kodu sadə tutmaq üçün bundan
           çəkinmək lazımdır. Məsələn, yuxarıdakı eyni kodu belə də yaza bilərik:
         </p>
-        <pre><code>#include &lt;iostream>
+        <pre><code>#include &lt;bits/stdc++.h>
 using namespace std;
 int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
   cout &lt;&lt; "Yaşınızı yazın: ";
   int age;
   cin >> age;
@@ -761,9 +793,568 @@ int main() {
           "ədədin bütün rəqəmləri üçün" ediriksə, deməli, dövr istifadə
           etməliyik. <code>while</code> (<i>vayl</i> kimi oxunur) sözünün
           tərcüməsi "nə qədər ki" deməkdir. Yəni, nə qədər ki, verilmiş şərt
-          ödənir, hansısa kodu icra edəcəyik.
+          ödənir, hansısa kodu icra edəcəyik. Gəlin, müsbət ədədin rəqəmləri
+          cəmini tapmaq üçün dövrdən istifadə edək. Bilirik ki, onluq say
+          sistemindəki ədədi mərtəbələrə bölə bilərik, məsələn:$$21805 = 2\cdot
+          10^4 + 1\cdot 10^3 + 8\cdot 10^2 + 0\cdot 10^1 + 5\cdot 10^0$$ Bu
+          ədədin son rəqəmini tapmaq üçün 10 ədədinə böldükdə alınan qalığa baxa
+          bilərik. Həqiqətən də, 21805 ədədini 10-a böldükdə qalıq 5-dir. Digər
+          rəqəmə keçmək üçün isə, 10-a bölmə edə bilərik. Axı C++-da tip
+          dəyişməyəcək, ona görə də, tam ədədi 10-a böldükdə onun tam hissəsi
+          qalacaq. Bu da son rəqəmi silmək kimidir. Onda belə bir proses
+          yaranır: $$21805 \mod 10 = \fbox{5}, \ 21805/10 = 2180\\2180 \mod 10 =
+          \fbox{0}, \ 2180/10 = 218\\218 \mod 10 = \fbox{8}, \ 218/10 = 21\\21
+          \mod 10 = \fbox{1}, \ 21/10 = 2\\2 \mod 10 = \fbox{2}, \ 2/10 =
+          \red{0}\\ \text{davamı varmı?}$$ Gördüyümüz kimi, burada eyni prosesi
+          təkrarlayırıq və ədədin rəqəmlərini bir-bir oxuya bilirik. Dövr
+          məsələlərində ən diqqətli olmalı olduğumuz şeylərdən biri isə dövrün
+          sonluğudur. Burada görürük ki, proses ədəd 0 olanda bitməlidir. Bir
+          şeyi də nəzərə alın ki, bu rəqəmləri biz əvvəldən-başa oxuyuruq, amma
+          cəm üçün bunun fərqi yoxdur. Kodu isə belə yaza bilərik:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int n;
+  cin >> n;
+  int sum = 0;
+  while (n != 0) {
+    sum += n % 10; // += üstünə gəlmək əməlidir
+    n /= 10; // oxşar şəkildə, /= bölmək əməlidir
+  }
+  cout &lt;&lt; sum &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          Bir daha deyək: "Nə qədər ki, n ədədi sıfır deyil, onun son rəqəmini
+          cəmə əlavə et və n-i 10-a böl". Çox rast gəlinən səhvlərdən biri
+          <code>n /= 10</code> əvəzinə <code>n / 10</code> yazmaqdır. Birincisi
+          n-i 10-a bölür, ikincisi isə n/10 ifadəsinin dəyərini hesablayır (amma
+          onunla heç nə etmir).
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Sonu sıfırla bitməyən ədədin rəqəmlərini tərsinə çevrilmiş ədədi
+          çıxışa verən kod yazın.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Sonu sıfırla bitməyən ədədin
+          <a href="https://az.wikipedia.org/wiki/Palindrom" target="_blank"
+            >palindrom</a
+          >
+          olub-olmadığını yoxlayan kod yazın.
+        </p>
+        <p class="mt-4">
+          <code>while</code> dövründən istifadə edərək girişə bildiyimiz sayda
+          ədəd də verə bilərik. Məsələn, <code>n</code> ədədi və ondan sonra
+          <code>n</code> sayda ədəd girişə verilsə, həmin ədədlərin cəmini
+          tapmaq üçün belə kod yaza bilərik:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int n;
+  cin >> n;
+  int x, i = 0;
+  long long sum = 0; // cəm böyük ola bilər
+  while (i &lt; n) {
+    cin >> x;
+    sum += x;
+    i++; // bu, i-nin dəyərini bir ədəd artırır
+  }
+  cout &lt;&lt; sum &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          Burada başda 0 olan <code>i</code> dəyişəni götürürük, sonra isə nə
+          qədər ki, n-dən kiçikdir, ədəd daxil edib onu cəmə əlavə edirik və
+          i-ni artırırıq. Nəzərə alın ki, burada i-nin aldığı dəyərlər
+          <code>0, 1, 2, ..., n-1</code> ədədləridir. Bəs niyə saymağa sıfırdan
+          başladıq? Proqramlaşdırmada adətən massivlərdə ilk ədədin indeksi
+          (sırası) sıfır olur, ona görə də, çox vaxt proqramımızda sıra
+          saylarını 0 üzərindən götürürük. İlk yazdığımız məsələdə ədədin
+          ixtiyari sayda rəqəmi ola bilərdi, amma ikinci məsələdə girişə
+          verəcəyimiz sayı bilirik. Belə hallarda, <code>for</code> dövrü daha
+          əlverişlidir. Yaddan çıxarmayın ki, iki cür dövrün işləmə prinsipi
+          eynidir, amma təxmini qayda belədir: dövr hansısa şərt üzərində
+          qurulanda <code>while</code>, hansısa say üzrə qurulduqda isə
+          <code>for</code> işlənir. Eyni kodu belə də yaza bilərik:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int n;
+  cin >> n;
+  int x;
+  long long sum = 0; // cəm böyük ola bilər
+  for (int i = 0; i &lt; n; i++) {
+    cin >> x;
+    sum += x;
+  }
+  cout &lt;&lt; sum &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          <code>while</code> dövründə ancaq şərt yazırıq, amma
+          <code>for</code> dövrü bizə dəyişən yaratmaqla və dəyişənin üzərində
+          əməl etməyə kömək edir. Nəzərə alın ki, yaratdığımız
+          <code>i</code> dəyişəni bu halda yalnız dövrün kod blokunda istifadə
+          oluna bilər (bu, dəyişənlərin əhatəsi mövzusuna aiddir, amma
+          suallarınız olsa, Piazza-da soruşun).
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Girişə n və sonra n tam ədəd verilir, onlardan cütlərin sayını çıxışa
+          verən proqram yazın.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Girişə a və b tam ədədləri verilir, $a^b$ ədədinin 1000000009
+          ($10^9+7$) ədədinə qalığını tapın.
+        </p>
+        <p class="mt-4">
+          Əla, artıq şərtləri və dövrləri də öyrəndik. Narahat olmayın, sonda ev
+          tapşırığında praktika üçün çoxlu məsələlər olacaq. Sonra isə
+          massivlərə və onların üzərindəki əməllərə baxacağıq. Amma ondan öncə
+          kiçik bir tövsiyəm var. C++ dilində biraz təcrübəsi olanlar bilir ki,
+          kod blokları bir sətir olduqda, çox hallarda mötərizələri silmək olar,
+          məsələn, bu da düzgün koddur:
+        </p>
+        <pre><code>if (age &lt; 18) cout &lt;&lt; "Siz sürücülük vəsiqəsi ala bilməzsiniz!";
+else if (age > 70) cout &lt;&lt; "Siz sürücülük vəsiqəsini yalnız yeniləyə bilərsiniz!";
+else cout &lt;&lt; "Siz sürücülük vəsiqəsi ala bilərsiniz!";
+</code></pre>
+        <p class="mt-4">
+          Mənim tövsiyəm odur ki, belə
+          <span class="font-bold text-red-300">yazmayın</span>. Çox vaxt
+          şərtlərə əlavə kodlar yazmaq lazım olur, məsələn, səhv axtardıqda
+          <code>cout</code> sətirləri. Bu isə vaxt qazanmaq əvəzinə itirməyə
+          səbəb olur. Həm də, diqqətsiz istifadə olunduqda başqa səhvlərə də yol
+          aça bilər. İndi isə keçək massivlərə, hələ qarşımızda bir neçə daha
+          mövzu var.
+        </p>
+        <p class="mt-4">
+          İndiyə kimi məsələlərdə girişə çoxlu ədədlər verdikdə onları yaddaşda
+          saxlamağa ehtiyac qalmayıb. Bəzən isə bu bizə lazımdır. Məsələn,
+          girişə n və n tam ədəd verilir, onları verilmiş sıranın tərsində
+          çıxışa vermək lazımdır. Burada biz massiv adlandırdığımız data
+          strukturundan istifadə edirik. Bu, əslində xüsusi bir tip deyil,
+          hansısa tipin ardıcıllığıdır. Massivlərin ölçüsü statik olur, yəni,
+          yaradılanda bilinməlidir. Buna görə də, massiv yaratdıqda, məsələdəki
+          şərtlərə baxmaq lazımdır. Tutaq ki, tərsinə çevirmə məsələsində n
+          ədədi ən çoxu 1000-dir. Onda, massivin ölçüsünü də ona uyğun
+          götürməliyik. Burada tövsiyə edirəm ki, həmişə lazım olandan 5 sayda
+          artıq ölçü götürün. Bunun iki səbəbi var: ola bilsin, indeksləri 1-dən
+          başlatmaq daha asandır və yaxud məsələdə massivin sonuna 1-2 sayda
+          əlavə ədəd artırmaq istəyirsiniz (bəzən, lazım olur). Onda tərsinə
+          çıxış etmə məsələsini belə yaza bilərik:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+
+const int MAX_N = 1005; // const yazmasaq nə baş verər?
+int arr[MAX_N]; // massivə çalışın ki, bir-hərfli adlar verməyin
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int n;
+  cin >> n;
+  for (int i = 0; i &lt; n; i++) {
+    cin >> arr[i];
+  }
+  for (int i = n-1; i >= 0; i--) { // özünü yoxla: niyə n-1 ilə başlayırıq? niyə >=0 yazırıq?
+    cout &lt;&lt; arr[i] &lt;&lt; " "; // boşluq ilə çıxışa veririk
+  }
+  cout &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          Bayaq dediyimiz kimi, massivlərin ölçüsü statik olmalıdır, ona görə
+          də, <code>const</code> yazmaqla kompilyatora demiş oluruq ki,
+          <code>MAX_N</code> dəyişəninin dəyəri dəyişməyəcək. Sonra isə massivin
+          elementlərini adi dəyişən kimi istifadə edirik, sadəcə düzbücaqlı
+          mötərizələr ilə istədiyimiz indeksə baxırıq. Çıxışa verdikdə isə,
+          sonuncu ədəddən başlayırıq və ilk ədəd daxil olmaqla, ona qədər
+          indeksimizi azaldırıq. Biz burada 0 indesklə başladıq, amma bəzi
+          məsələlərdə 1 indekslə başlamaq daha asan ola bilir. Əgər belə xüsusi
+          ehtiyac yoxdursa, mən 0 indekslə işləməyi tövsiyə edirəm. Amma ikisi
+          ilə də işləməyi bilmək lazımdır.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Yuxarıdakı kodun eynisinin 1 indekslə başlamaqla yazın və yoxlayın ki,
+          işləyir.
+        </p>
+        <p class="mt-4">
+          İndi isə iki balaca tövsiyə. Niyə <code>MAX_N</code> dəyişəni istifadə
+          etdik birbaşa 1005 yazmaq yerinə? Çox vaxt bizə bir neçə massiv ilə
+          işləmək lazım olur, ona görə də, hər dəfə 1005 yazmaq xətalara yol aça
+          bilər. Orada səhvən 105 yaza bilərik, amma <code>MAX_N</code> yazanda
+          hərf səvhi etsək, kod çalışmayacaq. Bir də, çoxlu
+          <code>for</code> dövrü yazanda əlimiz <code>i++</code> yazmağa
+          öyrəşir. Burada nəzərə alın ki, <code>i--</code> olmalıdır, çünki
+          tərsinə baxırıq. Səhvən <code>i++</code> yazsaq, kod sonsuz işləməyə
+          davam edərdi və konsol donardı. Belə halla üzləşsəniz, dövrlərinizi
+          yoxlayın.
+        </p>
+        <p class="mt-4">
+          Çalışın ki, massivləri həmişə "qlobal" əhatədə qeyd edin (yəni,
+          <code>int main</code> funksiyasından və ya başqa bütün funksiyalardan
+          kənarda). Bunun səbəbi kampımızın əhatəsindən çıxır, amma
+          maraqlananlar
+          <a
+            href="https://stackoverflow.com/questions/73491264/what-is-the-difference-in-declaring-a-array-inside-the-int-main-and-outside-th"
+            target="_blank"
+            >bu linkə</a
+          >
+          baxa bilər.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          C++-da <code>i++</code> və <code>++i</code> əməlləri arasında kiçik
+          bir fərq var. Bu fərq haqqında yaxşı bilirsinizsə və başqası artıq
+          yazmayıbsa, Piazza-da qeyd (Note) yaradın və paylaşın. İzahı gələn
+          dərsin qeydlərində müəllifin adı ilə paylaşacam.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a
+            href="https://www.eolymp.com/en/contests/29909/problems/348401"
+            target="_blank"
+            >Ən kiçik leksikoqrafik sürüşmə</a
+          >
+          məsələsini həll edin.
+        </p>
+        <p class="mt-4">
+          İndi isə keçək massivin ən çox istifadə olan alternativinə:
+          <code>vector</code> tipinə. Bu tip dinamik ölçülüdür, yəni, massivlər
+          kimi statik ölçüsü olmur. Onların ölçüsünü istədiyimiz vaxt dəyişə
+          bilərik (məsələn, element artırmaq və ya silməklə).
+          <code>vector</code> tipini adətən 2 cür istifadə edirik: ya əvvəlcədən
+          ölçü verməklə, ya da boş başlayıb ədəd əlavə etməklə. Əvvəlcədən ölçü
+          versək, bu, daha çox massivə oxşayır, amma belə bir üstünlük var ki,
+          başlanğıcda <code>vector</code>-u istədiyimiz ədədlərlə doldura
+          bilərik (məsələn, bütün ədədlər 1 ilə). Tutaq ki, girişə verilən
+          ədədlər arasında cüt ədədləri tapıb, onları tərsinə sırada çıxışa
+          vermək istəyirik (məsələn, n=7 və ədədlər
+          <code>1 2 6 3 5 9 4</code> olsa, çıxışa <code>4 6 2</code> veririk).
+          Burada <code>vector</code> tipini belə istifadə edə bilərik:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int n, x;
+  cin >> n;
+  vector&lt;int> v(n, 1); // bu vector-da n sayda 1 ədədi ilə başlayırıq
+  // bu halda v-ni 1 ədədləri ilə dolduqmağın mənası yoxdur, çünki daxil etdiyimiz ədədlər onların üzərinə yazılacaq
+  vector&lt;int> evens; // bu isə boş vector-dur
+  for (int i = 0; i &lt; n; i++) {
+    cin >> v[i];
+    if (x % 2 == 0) { // 2-ə bölündükdə qalıq sıfır olarsa, cüt ədəddir
+      evens.push_back(x); // push_back ədədi sona əlavə edir
+    }
+  }
+  for (int i = n - 1; i >= 0; i--) {
+    cout &lt;&lt; v[i] &lt;&lt; " ";
+  }
+  cout &lt;&lt; endl;
+  int sz = evens.size();
+  for (int i = sz - 1; i >= 0; i--) {
+    cout &lt;&lt; evens[i] &lt;&lt; " ";
+  }
+  cout &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          <code>vector</code> tipi ilə işləyəndə ehtiyatlı olmaq lazımdır. İlk
+          olaraq, nəzərə alın ki <code>v[i]</code> kimi kodu yalnız vector-un
+          kifayət qədər yeri olduqda yazmaq olar, yoxsa proqram çalışacaq, amma
+          xəta verəcək. Yəni, boş vector ilə başlasaq, girişə vermək üçün
+          <code>v[i]</code> yazmaq düz deyil. Nümunələrə baxdıq, amma gəlin
+          vectorun ən çox istifadə olunan əməllərini də öyrənək.
+        </p>
+        <pre><code>// boş vector yaratmaq üçün:
+vector&lt;tip> v; // tipi istədiyimiz tiplə əvəzləyə bilərik.
+
+// ölçüsü n, bütün elementləri x olan vector yaratmaq üçün:
+vector&lt;tip> v(n, x);
+
+// vectorun ölçüsünü tapmaq üçün:
+v.size();
+
+// vectorun sonuna x elementini artırmaq üçün:
+v.push_back(x);
+
+// vectorun sonuncu elementini silmək üçün:
+v.pop_back();
+
+// vectorun i indeksində olan elementi:
+v[i];
+
+// vectorun sonuncu elementi (əgər boşdursa, bu, xəta verəcək):
+v.back();
+
+// vectoru təmizləmək üçün (bütün elementləri silmək):
+v.clear();</code></pre>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Massiv və ya vectorda sondan k-cı elementi çıxışa verən proqram yazın.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          Piazza-da qeyd (Note) yaradaraq vector üçün <code>erase</code> və
+          <code>insert</code> metodlarını izah edin. Gələn dərsin qeydlərində
+          yaxşı izahları müəlliflərin adı ilə bir yerdə paylaşacam.
+        </p>
+        <p class="mt-4">
+          İndi isə biraz iki-ölçülü massivlərdən danışaq. Əslində, onlar xüsusi
+          bir şey deyillər: 1-ölçülü massivdə hər element məsələn,
+          <code>int</code> olur, 2-ölçülü massivdə isə hər element
+          <code>int[]</code> (yəni, int massivi olur). Yəni, 2-ölçülü massiv
+          "massivlərin massivi" deməkdir. Belə bir məsələyə baxaq. Girişə n, m,
+          sonra isə sətir sayı n, sütun sayı m olan iki-ölçülü massiv verilir.
+          Fərz edək ki, $n, m \leq 1000$. Biz bu iki-ölçülü massivdə hər sütunun
+          ən böyük ədədini taparaq onları çıxışa vermək istəyirik. Nəzərə alın
+          ki, çıxışa m sayda ədəd veriləcək.
+        </p>
+        <pre><code>Nümunə giriş:
+3 5
+1 5 2 3 9
+2 4 5 1 4
+6 2 3 8 3
+
+Yuxarıdakı test üçün çıxış:
+6 5 5 8 9</code></pre>
+        <p class="mt-4">Bu məsələ üçün belə bir həll yaza bilərik:</p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+
+const int MAX_N = 1005;
+int arr[MAX_N][MAX_N];
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int n, m;
+  cin >> n >> m;
+  for (int i = 0; i &lt; n; i++) {
+    for (int j = 0; j &lt; m; j++) {
+      cin >> arr[i][j]; // i-ci sətir, j-ci sütundakı element
+    }
+  }
+  // indi isə hər sütuna baxaq
+  for (int j = 0; j &lt; m; j++) {
+    int column_max = arr[0][j]; // j sütunundakı ilk ədədlə başlayaq
+    for (int i = 0; i &lt; n; i++) {
+      if (arr[i][j] > column_max) {
+        column_max = arr[i][j]; // daha böyük ədəd tapsaq, onunla əvəzləyək
+      }
+    }
+    cout &lt;&lt; column_max &lt;&lt; " ";
+  }
+  cout &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          Mən sətirləri <code>i</code>, sütunları <code>j</code> adları ilə
+          indeksləməyi sevirəm. Nəzərə alın ki, məcbur deyil ki, iç-içə dövrlər
+          olanda içdə j, çöldə isə i işlənsin. Sütunlara baxırıq deyə ilk olaraq
+          j adlanan dövrü yazdım. Gəlin eyni məsələni biraz daha maraqlı edək.
+          Yalnızca, n və m üzərindəki şərti dəyişirəm: indi $n, m \leq 10^5$,
+          amma $n\times m \leq 10^6$. Gəlin nəyin dəyişdiyini anlamağa çalışaq.
+          Əvvəlki məsələdə n və m ədədləri ən çoxu 1000 ola bilərdi, yəni,
+          onların hasili ən çoxu $10^6$ olur. İndi isə, n və m ədədləri çox daha
+          böyük ola bilərlər, amma onların hasili yenə ən çoxu milyon olacaq.
+          Məsələn, indi giriş 10 sətirli, 100000 sütunlu ola bilər. Burada
+          massiv istifadə edə bilərikmi?
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <code>int arr[MAX_N][MAX_N]</code> massivi
+          <code>MAX_N = 100005</code> olduqda təxminən nə qədər yaddaş tutur?
+          Bəs 1 milyon <code>int</code> üçün əslində nə qədər yaddaş lazımdır?
+          (kömək: tipləri müzakirə edəndə, <code>int</code> tipinin yaddaşı
+          haqqında danışmışdıq)
+        </p>
+        <p class="mt-4">
+          Belə hallarda köməyimizə iki-ölçülü vector çatır. Bu da massivlərdə
+          olduğu kimi vector-ların vector-udur. Onu, hətta bir sətirlə də belə
+          qeyd edə bilərik:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int n, m;
+  cin >> n >> m;
+  // hər sətiri ölçüsü m olan vector kimi düşünün
+  vector&lt;vector&lt;int>> arr(n, vector&lt;int>(m));
+  // ... qalan kod tamamilə eynidir
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          Gəlin daha dərindən anlayaq. Dediyimiz kimi, n sətir var, m sütun. Bu
+          o deməkdir ki, hər sətiri ölçüsü m olan vector kimi düşünmək olar.
+          Ümumi isə n sətir var. Yəni vector-umuzda n element olacaq, onların
+          hər biri isə ölçüsü m olan vector olacaq.
+          <code>vector&lt;int>(m)</code> həmin iç vector-lardır, onların sayını
+          isə <code>arr(n, [ölçüsü m olan vector])</code> yazmaqla qeyd etmişik.
+          Ümumi tip isə <code>vector&lt;vector&lt;int>></code> olur. İlk
+          gördükdə biraz qəliz hiss oluna bilər, amma biraz praktikadan sonra
+          təbii gələcək!
+        </p>
+        <p class="mt-4">
+          İndi isə <code>string</code> tipi haqqında danışaq. Bu tipi ona görə
+          axıra yaxın saxladım ki, onun vector ilə oxşarlıqları çoxdur. Bu tip
+          də dinamik ölçülü tipdir, hətta, onu <code>char</code> tiplərinin
+          vector-u kimi düşünmək də olar. Amma <code>string</code> tipinin bir
+          çox üstünlükləri var. Onların ilki <code>cin</code> ilə birbaşa
+          işləməsidir. Yəni, girişə söz verilsə, onu rahatlıqla oxuya bilərik,
+          hətta, ölçüsünü əvvəlcədən bilməsək belə. Əlavə olaraq, iki string-i
+          birləşdirmək üçün toplaya da bilərik. Yenə də, kod nümunələri ilə
+          öyrənək:
+        </p>
+        <pre><code>string s; // boş bir string yaratmaq üçün
+
+string s(n, 'a'); // bütün simvolları a hərfi olan və ölçüsü n olan string
+
+s.size(); // ölçüsünü tapmaq üçün
+
+s += 'a'; // sonuna simvol (char) artırmaq üçün
+s += "salam"; // sonuna başqa string artırmaq üçün
+s += t; // əgər t string-dirsə, sonuna artırmaq üçün
+
+s.pop_back(); // sonuncu simvolu silmək üçün
+
+s[i]; // i-ci indeksdəki simvol
+
+s.back(); // sonuncu simvol
+
+s = ""; // string-i sıfırlamaq üçün (başqa stringə də bərabər edə bilərdik)</code></pre>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          Piazza-da qeyd (Note) yaradaraq string üçün <code>erase</code>,
+          <code>insert</code>, <code>substr</code>,
+          <code>replace</code> metodlarını izah edin (hamısını etməyə ehtiyac
+          yoxdur, bir-ikisini də etmək olar). Gələn dərsin qeydlərində yaxşı
+          izahları müəlliflərin adı ilə bir yerdə paylaşacam.
+        </p>
+        <p class="mt-4">
+          İndi isə gəlin maraqlı məsələyə baxaq. Kiçin hərflərdən ibarət
+          <code>string</code>-də ən çox rast gəlinən hərfi tapmaq istəyirik.
+          Bunun üçün bütün hərfləri saya bilərik. İdeya belədir ki, 26 kiçik
+          hərf var deyə ölçüsü 26 olan vector bizə bəs edər. Hər hərf üçün isə
+          onları 0-dan 25-ə qədər ədədlərdə əvəz edək (ASCII kodlamanı yada
+          gətirin). Onda bu məsələni belə edə bilərik:
+        </p>
+        <pre><code>#include &lt;bits/stdc++.h>
+using namespace std;
+
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  string s;
+  cin >> s;
+  vector&lt;int> cnt(26, 0); // başda bütün saylar 0-dır
+  for (int i = 0; i &lt; s.size(); i++) {
+    cnt[s[i] - 'a']++; // s[i]='a' olduqda, indeks 0 olur, 'b' olduqda 1 və sair
+  }
+  char freq = 'a'; // tutaq ki, a hərfi ən çox rast gəlinir
+  int max_cnt = cnt[0]; // bu, a hərfinin sayıdır
+  for (int i = 0; i &lt; 26; i++) {
+    if (cnt[i] > max_cnt) { // i-ci hərf daha çox rast gəlinir
+      freq = i + 'a';
+      max_cnt = cnt[i];
+    }
+  }
+  cout &lt;&lt; freq &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        <p class="mt-4">
+          Bu məsələdən xoşum gəlir, çünki avtomatik çevrilmənin də istifadəsini
+          göstərir. s[i] və 'a' char tipləri olsalar da, onları bir-birindən
+          çıxa bilirik. Sonra isə int tipi olan i və char tipi olan 'a' üzərində
+          də toplama edirik. Mütləq bu kodu tam başa düşməyə çalışın, lazım
+          gəlsə isə Piazza-da sual verin.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a
+            href="https://www.eolymp.com/en/contests/29909/problems/348396"
+            target="_blank"
+            >Çəyirtkə və zəncir</a
+          >
+          məsələsini həll edin.
+        </p>
+        <p class="mt-4">
+          Əla! Bu dərsin "rəsmi" hissəsi bura qədər. İndi isə bonuslar!
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Önəmli tövsiyə (+sən də yaz)</span>
+          <br />
+          <code>max</code> və <code>min</code> funksiyaları haqqında öyrənin.
+          Bilirdinizmi ki, onları 2-dən artıq ədəd üzərində də istifadə etmək
+          olar? <code>max({1, 2, 3, 10})</code> kimi.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          Piazza-da qeyd (Note) yaradaraq mənim <code>vector</code> və
+          <code>string</code> tiplərini izah etdiyim kimi
+          <code>deque</code> tipini izah edin. Niyə həmişə ondan istifadə
+          etmirik haqqında da araşdırın. Gələn dərsin qeydlərində yazılarınızı
+          müəlliflərin adları ilə birlikdə paylaşacam.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          Piazza-da qeyd (Note) yaradaraq C++-dakı makroları, yəni,
+          <code>#define</code> ifadələrini izah edin. Gələn dərsin qeydlərində
+          yazılarınızı müəlliflərin adları ilə birlikdə paylaşacam.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          Piazza-da qeyd (Note) yaradaraq <code>pair</code> tipini izah edin.
+          Gələn dərsin qeydlərində yazılarınızı müəlliflərin adları ilə birlikdə
+          paylaşacam.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          Piazza-da qeyd (Note) yaradaraq həm massivlər, həm vector/string kimi
+          tiplər üçün <code>sort</code> və <code>reverse</code> funksiyalarını
+          izah edin. Gələn dərsin qeydlərində yazılarınızı müəlliflərin adları
+          ilə birlikdə paylaşacam.
         </p>
       </section> -->
+      <section class="mt-6" id="homework">
+        <h2 class="text-2xl">Ev tapşırığı</h2>
+        <p class="mt-2">Ev tapşırığı məsələləri bura əlavə olunacaq.</p>
+      </section>
     </main>
     <script src="/dist/prism.js"></script>
   </body>
