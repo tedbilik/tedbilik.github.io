@@ -15,6 +15,28 @@
         padding-top: 0;
         padding-bottom: 0;
       }
+      @media print {
+        code,
+        .token {
+          color: #000 !important;
+          text-shadow: none !important;
+        }
+        pre[class*="language-"],
+        code {
+          box-shadow: none !important;
+        }
+        p.border {
+          border-width: 2px;
+          border-color: darkslategray;
+        }
+        * {
+          box-shadow: none;
+          -webkit-box-shadow: none;
+        }
+        .no-print {
+          display: none;
+        }
+      }
     </style>
     <link rel="stylesheet" href="/dist/prism.css" />
     <link
@@ -62,7 +84,7 @@
       class="text-neutral-200 min-h-screen w-screen px-5 max-w-4xl text-lg mx-auto py-5 language-cpp"
     >
       <header class="flex flex-col items-center">
-        <a href=".." class="mb-2 flex items-center gap-2 no-underline">
+        <a href=".." class="mb-2 flex items-center gap-2 no-underline no-print">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -82,18 +104,26 @@
           Dərs 1: C++ dilinin olimpiada üçün təməlləri
         </h1>
       </header>
-      <section class="mt-6">
+      <section class="mt-6 no-print">
         <h2 class="text-2xl">Dərsin videosu</h2>
         <p class="mt-2">
           Dərsin videosu yükləndikdən sonra bura yerləşdiriləcək.
         </p>
       </section>
-      <section class="mt-6">
-        <h2 class="text-2xl">Qeydlər</h2>
-        <p class="mt-2">Qeydlər dərsdən sonra paylaşılacaq.</p>
-      </section>
       <!-- <section class="mt-6">
         <h2 class="text-2xl">Qeydlər</h2>
+        <p class="mt-2">Qeydlər dərsdən sonra paylaşılacaq.</p>
+      </section> -->
+      <section class="mt-6">
+        <header class="flex items-center justify-between">
+          <h2 class="text-2xl">Qeydlər</h2>
+          <button
+            onclick="window.print()"
+            class="border rounded-xl px-2 py-1 bg-neutral-700 no-print hover:bg-neutral-900"
+          >
+            Qeydləri çap et
+          </button>
+        </header>
         <p class="mt-2">
           İlk dərsə xoş gəldiniz! Bu dərsdə C++ dili və olimpiadada onun
           istifadəsindən danışacağıq. Artıq C++ bilirsinizsə, bu, əladır, sizə
@@ -322,7 +352,7 @@ int main() {
             </tr>
             <tr>
               <td class="p-1">bool</td>
-              <td class="p-1">1 bit</td>
+              <td class="p-1">1 bayt (8 bit)</td>
               <td class="p-1">0 və ya 1</td>
               <td class="p-1">Məntiq ifadələri</td>
             </tr>
@@ -572,7 +602,7 @@ int main() {
           amma onları 1 və 0 ilə də əvəz etmək olar. Bu məntiqlə, biz bu tipin
           əvəzinə həmişə <code>int</code> istifadə edə bilərdik, amma burada
           <code>int</code> və <code>long long</code> arasındakı problem yenə
-          yaranır: <code>bool</code> 32 dəfə daha az yaddaş tutur və 32 (bəzi
+          yaranır: <code>bool</code> 4 dəfə daha az yaddaş tutur və 32 (bəzi
           kompilyatorlarda 64) dəfəyə qədər sürətli işləyə bilir (təbii ki,
           burada söhbət bütün kodun işləmə zamanından getmir. ciddi sürətlənməni
           ancaq çoxlu bool tiplərlə işləyəndə ala bilərsiniz).
@@ -1320,6 +1350,13 @@ int main() {
           olar? <code>max({1, 2, 3, 10})</code> kimi.
         </p>
         <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Önəmli tövsiyə (+sən də yaz)</span>
+          <br />
+          <code>ceil</code> funksiyası haqqında öyrənin. Bu funksiyanı tam
+          ədədlərə necə tətbiq edə bilərik ki, <code>double</code> tipindən
+          istifadə etməyək?
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
           <span class="font-semibold">Sən də yaz</span>
           <br />
           Piazza-da qeyd (Note) yaradaraq mənim <code>vector</code> və
@@ -1350,8 +1387,15 @@ int main() {
           izah edin. Gələn dərsin qeydlərində yazılarınızı müəlliflərin adları
           ilə birlikdə paylaşacam.
         </p>
-      </section> -->
-      <section class="mt-6" id="homework">
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          Piazza-da qeyd (Note) yaradaraq ixtiyari sayda giriş olan məsələləri
+          izah edin (<code>while(cin >> x)</code> tipli giriş.) Gələn dərsin
+          qeydlərində yazılarınızı müəlliflərin adları ilə birlikdə paylaşacam.
+        </p>
+      </section>
+      <section class="mt-6 no-print" id="homework">
         <h2 class="text-2xl">Ev tapşırığı</h2>
         <p class="mt-2">Ev tapşırığı məsələləri bura əlavə olunacaq.</p>
       </section>
