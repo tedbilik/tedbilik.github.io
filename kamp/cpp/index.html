@@ -16,9 +16,11 @@
         padding-bottom: 0;
       }
       @media print {
+        * {
+          color: #000 !important;
+        }
         code,
         .token {
-          color: #000 !important;
           text-shadow: none !important;
         }
         pre[class*="language-"],
