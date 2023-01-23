@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TED Bilik Kursları</title>
+    <link rel="stylesheet" href="/dist/styles.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap");
+      body {
+        font-family: "Source Sans Pro", sans-serif;
+      }
+      pre > code.language-cpp {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      @media print {
+        * {
+          color: #000 !important;
+        }
+        code,
+        .token {
+          text-shadow: none !important;
+        }
+        pre[class*="language-"],
+        code {
+          box-shadow: none !important;
+        }
+        p.border {
+          border-width: 2px;
+          border-color: darkslategray;
+        }
+        * {
+          box-shadow: none;
+          -webkit-box-shadow: none;
+        }
+        .no-print {
+          display: none;
+        }
+        ::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/dist/prism.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+      integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
+      crossorigin="anonymous"
+    />
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+      integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+      integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true },
+          ],
+          // • rendering keys, e.g.:
+          throwOnError: false,
+        });
+      });
+    </script>
+  </head>
+  <body class="bg-neutral-800" lang="az">
+    <main
+      class="text-neutral-200 min-h-screen w-screen px-5 max-w-4xl text-lg mx-auto py-5 language-cpp"
+    >
+      <header class="flex flex-col items-center">
+        <a href=".." class="mb-2 flex items-center gap-2 no-underline no-print">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-90deg-up"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"
+            />
+          </svg>
+          <span>Geri qayıt</span></a
+        >
+        <h1 class="flex justify-center text-3xl">
+          Dərs 2: Acgöz alqoritmlər və metodlar
+        </h1>
+      </header>
+      <section class="mt-6 no-print">
+        <h2 class="text-2xl">Dərsin videosu</h2>
+        <iframe
+          class="my-4"
+          width="100%"
+          height="400px"
+          src="https://www.youtube.com/embed/2oQkvKM7vRo"
+          title="İnformatika Olimpiadası Hazırlığı üçün Qış Kampı (2023) - Dərs 1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </section>
+      <section class="mt-6">
+        <header class="flex items-center justify-between">
+          <h2 class="text-2xl">Qeydlər</h2>
+          <button
+            onclick="window.print()"
+            class="border rounded-xl px-2 py-1 bg-neutral-700 no-print hover:bg-neutral-900"
+          >
+            Qeydləri çap et
+          </button>
+        </header>
+        <p class="text-center text-red-400 text-xl my-3">
+          Bu dərsin qeydləri hələ tam deyil. Əlavə olunana qədər dərsin
+          videosuna baxmağınız tövsiyə olunur. Sonda əlavə resurslar bölməsinə
+          baxmağı da unutmayın.
+        </p>
+        <p class="mt-2">
+          İkinci dərsə xoş gəldiniz! Ümid edirəm, ilk dərsdə hamı C++ haqqında
+          maraqlı bir şey öyrənə bildi. Piazza forumunda da çox əla söhbətlər
+          oldu. Söz verdiyim kimi, onları da paylaşıram.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Ən maraqlı Piazza paylaşımları</span>
+          <br />
+          @7, @14, @15, @16, @20, @21, @23, @24, @27, @28, @34, @35, @47
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold"
+            >Piazza-da aktiv olanlar və başqalarına yardım edənlər</span
+          >
+          <br />
+          Bu adların hamısına təşəkkürlər! Əgər kimisə unutdumsa və ya gözümdən
+          yayındısa, mənə Piazza-da bildirə bilər.
+          <br />
+          Royal Hasanov, Ali Qurbanli, al95ireyiz, Nizami Tağızadə, Aydin,
+          Nizami Tağızadə, Muhammedali Ahmadov, Nasir Bashirov, Rasul Gasimli,
+          Fatimə Əlizadə , Shahin Alekberli , Mete Namazov , Ali Aliyev , Shahin
+          Alekberli, Mehman Karimov, Onur Rahimli , Akbar Habibullayev, Aylin
+          Masiyeva
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sizin yazdıqlarınız</span>
+          <br />
+          Etməli: Burada kampçıların qeydlərini paylaş.
+        </p>
+        <p class="mt-4">
+          Bu gün çox maraqlı mövzulara baxacağıq. İki hədəfim var: dərsin
+          sonunda siz həm olimpiada üçün lazım olan C++ dilinin 95%-ni
+          öyrənəcəksiniz (qalan 5%-i isə yalnız beynəlxalq olimpiadalara
+          hazırlaşdıqda öyrənmək lazımdır, çünki onlara aid məsələlər olduqda,
+          çox çətin olurlar), həm də olimpiadalarda düşən ən məşhur məsələ
+          tipini həll etmək üçün çoxlu və ən önəmli metodları öyrənəcəksiniz.
+          Söhbət "acgöz" adlandırdığımız alqoritmlərdən gedir. Əslində, bu tipli
+          məsələlərin konkret mənasını tapmaq çətindir, amma məntiq budur ki,
+          hansısa intuitiv yollarla cavaba çatırıq. Hətta, ən asan məsələləri
+          belə acgöz tipində ifadə etmək olar. Tutaq ki, sizin qabağınızda n
+          sayda tort var və hərəsi üçün obyektiv dad balları professional dad
+          testi edənlər tərəfindən müəyyən olunmuşdur. Siz bu balları bilirsiniz
+          və ən dadlı tortu yemək istəyirsiniz. Hansı tortu yeyəcəksiniz? Təbii
+          ki, bu, verilmiş ədədlər arasında ən böyük ədədi tapmaq məsələsi ilə
+          eynidir. Amma həm məsələnin şərti fərqli verilmişdir, həm də istifadə
+          etdiyimiz seçim acgöz seçimdir, yəni, acgöz davranıb dad balı ən çox
+          olan tortu yeyirik. Bəzən asan məsələlərin şərtləri bu tipdə verilir.
+          Yalnızca çoxlu məsələ işləməklə şərtləri daha sürətli oxuya və daha
+          tez başa düşə bilərsiniz.
+        </p>
+        <p class="mt-4">
+          Keçən dəfə dərsdə tiplərdən çox danışdıq. İndi isə
+          <code>struct</code> mürəkkəb tip qurucusu haqqında danışaq. Bəzən
+          məsələlərdə verilənlər arasında əlaqələr olur, məsələn, girişə müstəvi
+          üzərində kordinatlar verilir. Bu nöqtələri daxil etmək üçün, məsələn,
+          iki massiv və ya vector işlədə bilərdik, amma bu, onların arasında
+          əlaqə yaratmır. Məsələn, bu nöqtələri <code>x</code> kordinatına görə
+          sıralamalı olsaydıq, bunu necə edərdik? Bir həll olaraq,
+          <code>pair</code> tipi işlədə bilərdik. Bəs kordinatlar 3-ölçülü
+          olsaydı necə? Onda
+          <code>pair&lt;int, pair&lt;int, int>></code> tipindən istifadə edə
+          bilərdik, amma bu həllərin arasında ən sadə və rahat olanı, məncə,
+          <code>struct</code> istifadə etməkdir. İstifadəsi çox rahatdır:
+        </p>
+        <pre><code>#include&lt;bits/stdc++.h>
+using namespace std;
+
+struct point { // point yaratdığımız tipin adı olacaq
+  int x, y;
+}; // burada nöqtə-vergülü unutmayın
+
+int main() {
+  int n;
+  cin >> n;
+  vector&lt;point> v(n);
+  for (int i = 0; i &lt; n; i++) {
+    cin >> v[i].x >> v[i].y;
+  }
+  // kodun davamı...
+}</code></pre>
+        <p class="mt-4">
+          Bu tip bizə həm işləyəndə rahat olur (məsələn, x və y kimi dəyişən
+          adları daha rahat başa düşülür, nəinki <code>first</code> and
+          <code>second</code> ifadələri), həm də koddakı qarışıqlığı aradan
+          qaldırır. İndi isə sual yaranır: bəs biz bu nöqtələri necə
+          sıralayırıq? <code>sort(v.begin(), v.end())</code> yazsaq nə baş
+          verir? C++ iki <code>point</code> tipini müqayisə edə bilmir, ona görə
+          də, kodu icra edə bilmir. Bu sıralamaları etmək üçün isə iki önəmli
+          metod göstərəcəm və ikisini də bilmək lazımdır. Bu yollardan biri
+          müqayisə əməlini təyin etməkdir, bu əməl üçün isə yalnız
+          <code>&lt;</code> operatorunu nəzərdə tuturuq. Bunu xüsusi
+          <code>operator</code> funksiyası yazmaqla edirik:
+        </p>
+        <pre><code>#include&lt;bits/stdc++.h>
+using namespace std;
+
+struct point { // point yaratdığımız tipin adı olacaq
+  int x, y;
+}; // burada nöqtə-vergülü unutmayın
+
+bool operator&lt;(point &p1, point &p2) {
+  if (p1.x == p2.x) {
+      return p1.y &lt; p2.y; // əgər x kordinatları bərabərdirsə, y-ə görə sıralayaq
+  }
+  return p1.x &lt; p2.x;
+}
+
+int main() {
+  int n;
+  cin >> n;
+  vector&lt;point> v(n);
+  for (int i = 0; i &lt; n; i++) {
+    cin >> v[i].x >> v[i].y;
+  }
+  sort(v.begin(), v.end());
+  for (auto &p: v) {
+    cout &lt;&lt; p.x &lt;&lt; " " &lt;&lt; p.y &lt;&lt; endl;
+  }
+}</code></pre>
+        <p class="mt-4">
+          Funksiyalar haqqında danışmamışıq, amma onlar haqqında bilmirsinizsə,
+          <a
+            href="https://www.programiz.com/cpp-programming/function"
+            target="_blank"
+            >bu keçiddən</a
+          >
+          oxumağı və öyrənməyi tövsiyə edirəm. Nəzərə alın ki, bu funksiyanın
+          tipi <code>bool</code> olmalıdır, çünki keçən dəfə dediyimiz kimi,
+          müqayisə ifadələri məntiqi ifadələr sayılır. Daha sonrasında isə
+          <code>operator &lt;</code> yazmaqla, həmin əməli təyin etdiyimizi
+          bildirmiş oluruq. Daha sonra isə funksiya iki <code>point</code> tipi
+          alır. Nəzərə alın ki, dəyişənlərin adının qabağında
+          <code>&amp;</code> işarəsi var. Bu, o deməkdir ki, bu funksiyaya
+          dəyişən daxil etdikdə, o, kopyalanmır, birbaşa ötürülür. Bunu
+          etməyimizin səbəbi isə zamana qənaət etməkdir. Adi funksiyalarda və
+          primitiv tiplərdə kopyalama çox zaman almır, amma daha mürəkkəb
+          tiplərdə bu referans adlandırdığımız işarəni qoymaqla proqramın zaman
+          itirməsinin qarşısını alırıq. İçəridə yazdığımız dəyəri isə
+          <code>p1</code> və <code>p2</code> dəyişənlərinin aldığı sıra kimi
+          başa düşmək olar. Bu hissəni daha yaxşı anlamaq üçün dərsin videosuna
+          baxmağı çox tövsiyə edirəm, orada daha geniş izah var.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          Funksiyalar haqqında Piazza-da yazın. <code>void</code> tipi haqqında
+          yazmağı da unutmayın. Dəyişənlərin önünə & işarəsi yazmağın nə mənaya
+          gəldiyini və onun başqa istifadələrini də göstərin (məsələn,
+          funksiyaya <code>vector</code> daxil etdikdə).
+        </p>
+        <p class="mt-4">
+          Sıralamağın ikinci yolu isə <code>sort</code> funksiyasını komparator
+          ilə təmin etməkdir. Biz bu funksiyaya hazırda iki dəyər veririk (<code
+            >v.begin()</code
+          >
+          və <code>v.end()</code>), amma məcburi olmayan 3-cü dəyər də verə
+          bilərik. Həmin dəyər funksiya olmalıdır. Mən bu dəyəri
+          <a
+            href="https://www.programiz.com/cpp-programming/lambda-expression"
+            target="_blank"
+          >
+            lambda funksiyası</a
+          >
+          kimi yazmağı daha çox sevirəm.
+        </p>
+        <pre><code>#include&lt;bits/stdc++.h>
+using namespace std;
+
+struct point { // point yaratdığımız tipin adı olacaq
+  int x, y;
+}; // burada nöqtə-vergülü unutmayın
+
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int n;
+  cin >> n;
+  vector&lt;point> v(n);
+  for (int i = 0; i &lt; n; i++) {
+    cin >> v[i].x >> v[i].y;
+  }
+  sort(v.begin(), v.end(), [&](auto &p1, auto &p2) {
+    if (p1.x == p2.x) {
+      return p1.y &lt; p2.y; // əgər x kordinatları bərabərdirsə, y-ə görə sıralayaq
+    }
+    return p1.x &lt; p2.x;
+  });
+  for (auto &p: v) {
+    cout &lt;&lt; p.x &lt;&lt; " " &lt;&lt; p.y &lt;&lt; endl;
+  }
+}
+</code></pre>
+        <p class="mt-4">
+          Bu, çətin görünə bilər, amma bayaqkı funksiyanın eysini yazırıq.
+          Bayaqkı funksiyada dəyişənləri <code>point</code> olaraq qeyd etməli
+          idik, amma burada <code>auto</code> da işlədə bilərik, çünki C++ başa
+          düşür ki, bu <code>v</code>-nin elementləri arasında müqayisədir və
+          həmin elementlər <code>point</code> tipindədir. Lambda funksiyanın
+          əvvəlində isə <code>[&]</code> var. Oradakı referans işarəsini də
+          yazmağı unutmayın (bu halda, fərq etmir, amma başqa hallarda kodu
+          sürətləndirə bilər). Bu haqda da daha çox dərsin videosunda var, amma
+          Piazza-da sual yaza bilərsiniz.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Sən də yaz</span>
+          <br />
+          Lambda funksiyaları haqqında daha geniş öyrənin və Piazza-da yazın.
+          Onları nə vaxt istifadə edə bilərik? Adi funksiyalar ilə sürət fərqi
+          varmı?
+        </p>
+        <p class="mt-4">
+          İndi isə C++-da ən güclü tiplər haqqında öyrənəcəyik.
+          <code>priority_queue</code> tipi ilə başlayaq. Ona biz elementlər
+          əlavə etdikdə, onları avtomatik olaraq sıralayır, amma
+          <code>vector</code>-da edə bildiyimiz kimi istənilən indeksdəki
+          elementi oxuya bilmirik. Bu, bizə ən böyük və ya kiçik elementlərdə
+          dinamik şəkildə işləməyə icazə verir.
+        </p>
+        <pre><code>priority_queue&lt;int> pq;
+
+pq.push(x); // x elementini artır
+
+pq.top(); // başdakı elementi oxu
+
+pq.pop(); // başdakı elementi sil
+
+pq.size(); // elementlərin sayı</code></pre>
+        <p class="mt-4">
+          Başdakı element ən böyük element olur, amma bunu dəyişə bilərik. Ən
+          kiçik element olması üçün belə təyin edirik:
+        </p>
+        <pre><code>priority_queue&lt;int, vector&lt;int>, greater&lt;int>> pq;</code></pre>
+        <p class="mt-4">
+          Bu tip bizə ən böyük və ya ən kiçik elementləri tapmağa kömək edir,
+          amma biz bunu <code>vector</code> tipi ilə də edə bilərdik. Bəs niyə
+          <code>priority_queue</code> işlədək? Bunun səbəbi alqoritmin işləmə
+          sürətidir. <code>vector</code> tipində biz ən böyük və ya ən kiçik
+          elementi tapmaq üçün xətti sayda əməl edirik. Xətti dedikdə, vectorun
+          ölçüsünə nəzərən deyilir. Məsələn, ölçü n-dirsə, onda vectorda axtarış
+          n-dən xətti asılı olacaq. Buna $O(n)$ zaman çətinliyi deyirik.
+          Məsələn, n dəfə ən böyük ədədi axtarsaq, onda zaman çətinliyi
+          $O(n\cdot n) = O(n^2)$ olar. Kompüterlər isə hazırda təxminən $10^9$
+          əməliyyatı bir saniyəyə görürlər. Yəni, $n=10^5$ halında ümumi
+          əməliyyatlar üçün sərf olunan zaman çox təxminən 10 saniyə çəkəcək. Bu
+          təxminlər çox kobuddurlar, çünki bəzən kompilyatorlar bizim üçün
+          optimizasiyalar edirlər. Bəzən isə bir əməliyyat xətti olsa da, onun
+          əmsalı böyük olur (məsələn, $10n$ əməliyyat edir, amma bu da $O(n)$
+          sayılır). <code>priority_queue</code>-də isə element əlavə etmək və
+          silmək loqarifmik çətinlikdə (loqarifmik dedikdə, 2 əsasda nəzərdə
+          tuturuq), ən başdakı elementi tapmaq üçün isə konstant zaman lazımdır.
+          Konstant zaman adətən çox sürətli deməkdir (məsələn, 5 əməliyyat).
+          Loqarifmik də çox sürətlidir. Nəzərə alın ki, milyon ədədinin 2 əsasda
+          loqarifması təxminən 20 edir. Yəni, milyon əvəzinə 20 əməliyyat
+          edirik. Dediyim kimi, bu hesablamarın hamısı çox təxminidirlər, amma
+          məsələ üçün alqoritmik çətinlik düşünəndə kömək olurlar.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Önəmli tövsiyə (+sən də yaz)</span>
+          <br />
+          Zaman çətinlikləri haqqında
+          <a href="https://cses.fi/book/book.pdf" target="_blank"
+            >bu linkdəki</a
+          >
+          kitabın ikinci fəsilindən (Chapter 2) oxuyun. Mövzunun qısa izahını
+          Piazza-da qeyd kimi paylaşa bilərsiniz.
+        </p>
+        <p class="mt-4">
+          İndi isə <code>priority_queue</code>-dən daha güclü bir tipə baxaq.
+          <code>set</code> tipi elə bir strukturdur ki, ora element əlavə edib,
+          istənilən elementi silə bilərik, həm də eyni zamanda həm ən böyük, həm
+          də ən kiçik elementi oxuya bilərik. Bundan əlavə, iki çox maraqlı
+          <code>lower_bound</code> və <code>upper_bound</code> metodları da var,
+          amma onlar haqqında daha sonra danışacağıq. Bu tiplə çalışmaq daha
+          çətindir, amma praktika ilə daha rahat olacaq. Nəzərə alın ki,
+          <code>set</code> tipi yalnız fərqli ədədləri özündə saxlayır. Əgər
+          əlavə etdiyimiz ədəd set-də var idisə, heç nə dəyişmir.
+        </p>
+        <pre><code>set&lt;int> s;
+
+s.insert(x); // x elementini əlavə et
+
+s.erase(x); // x elementini sil
+
+s.find(x); // x elementinə uyğun gələn iteratoru tap (yoxdursa, s.end() olur)
+
+s.begin(); // başlanğıc iterator (ən kiçiyə uyğun gəlir)
+
+s.end(); // son iterator (burada heç bir element uyğun gəlmir)
+
+s.size(); // set-in ölçüsü
+
+s.count(x); // x elementinin set-də sayı (setdə 0 və ya 1 olur)</code></pre>
+        <p class="mt-4">
+          (burada iteratorları və onlardan elementin özünü almaqla bağlı danış)
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/az/problems/5337" target="_blank"
+            >Müxtəlif-müxtəlif</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/en/problems/2661" target="_blank"
+            >Qiymət nişanları</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4">
+          <code>set</code> tipindəki demək olar ki, bütün əməliyyatlar
+          loqarifmik zamana işləyirlər. Bəs niyə bu tip ola-ola
+          <code>priority_queue</code> işlədirik, axı bu daha güclüdür? Səbəbi
+          isə zaman çətinlikləri eyni olsa da, <code>set</code> tipində
+          əməliyyatların konstant əmsalı daha çoxdur, yəni praktikada daha çox
+          zaman aparır. Dediyimiz kimi, <code>set</code> ancaq fərqli ədədləri
+          özündə saxlayır. Bəs bir ədəddən çoxlu olmağını istəsək necə? Onda
+          bütün əməlləri <code>set</code> ilə eyni olan
+          <code>multiset</code> tipi istifadə etmək olar.
+        </p>
+        <p class="mt-4"><code>map</code> tipi haqqında danış.</p>
+        <pre><code>#include&lt;bits/stdc++.h>
+using namespace std;
+
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  map&lt;int, int> mp;
+  mp[1] = 5;
+  mp[4] = 10;
+  // C++11 və yuxarı
+  for (auto &p: mp) {
+    cout &lt;&lt; p.first &lt;&lt; " " &lt;&lt; p.second &lt;&lt; endl;
+  }
+  cout &lt;&lt; endl;
+  // C++14 və yuxarı
+  for (auto &[k, v]: mp) {
+    cout &lt;&lt; k &lt;&lt; " " &lt;&lt; v &lt;&lt; endl;
+  }
+  // ...
+}
+</code></pre>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Girişə n ədədi və n ədəd söz verilir. Ən çox rast gəlinən sözü necə
+          taparıq?
+        </p>
+        <pre><code>#include&lt;bits/stdc++.h>
+using namespace std;
+
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  map&lt;int, int> mp;
+  mp[1] = 5;
+  mp[4] = 10;
+  cout &lt;&lt; mp.count(1) &lt;&lt; endl;
+  cout &lt;&lt; mp.count(3) &lt;&lt; endl;
+  if (!mp[3]) {
+    cout &lt;&lt; "3 yoxdur" &lt;&lt; endl;
+  }
+  cout &lt;&lt; mp.count(3) &lt;&lt; endl; // ???
+  return 0;
+}
+</code></pre>
+
+        <p class="mt-4">
+          Bu tiplərdə struct istifadə edəndə nə etməli haqqında danış.
+        </p>
+        <p class="mt-4">İki indeks (two pointers) metodu haqqında danış.</p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Apartments məsələsini həll et.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          Playlist məsələsini həll et.
+        </p>
+        <p class="mt-4">
+          Binary search (ikili axtarış) haqqında danış.
+          <code>lower_bound</code>, <code>upper_bound</code> metodları və
+          funksiyaları haqqında danış.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/en/problems/11286" target="_blank"
+            >İki dəfə böyük</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://cses.fi/problemset/task/1073/" target="_blank"
+            >Towers</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/az/problems/117" target="_blank"
+            >Sal</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://cses.fi/problemset/task/1660" target="_blank"
+            >Subarray Sums I</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4">Prefix sum haqqında danış.</p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://cses.fi/problemset/task/1661" target="_blank"
+            >Subarray Sums II</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://cses.fi/problemset/task/1652" target="_blank"
+            >Forest Queries</a
+          >
+          məsələsini həll et.
+        </p>
+      </section>
+      <section class="mt-6">
+        <h2 class="text-2xl">Əlavə faydalı resurslar</h2>
+        <ul class="mt-2 ml-8 list-disc">
+          <li>
+            <a href="https://usaco.guide/silver" target="_blank"
+              >USACO Guide Bronze</a
+            >
+            səhifəsində <i>Introduction to Sorting</i>,
+            <i>Introduction to Sets & Maps</i> və
+            <i>Introduction to Greedy Algorithms</i> bölmələri.
+          </li>
+          <li>
+            <a href="https://usaco.guide/silver" target="_blank"
+              >USACO Guide Silver</a
+            >
+            səhifəsində <i>Prefix Sums</i> və
+            <i>Sorting and Searching</i> bölmələri.
+          </li>
+          <li>
+            <a href="https://cses.fi/book/book.pdf" target="_blank"
+              >CSES Kitabında</a
+            >
+            2-ci (<i>Time complexity</i>), 3-cü (<i>Sorting</i>), 4-cü (<i
+              >Data structures</i
+            >) və 6-cı (<i>Greedy algorithms</i>) fəsillər.
+          </li>
+        </ul>
+      </section>
+      <section class="mt-6 no-print" id="homework">
+        <h2 class="text-2xl">Ev tapşırığı</h2>
+        <p class="mt-2">
+          Bu dərs üçün xüsusi ev tapşırığı
+          <a href="https://cses.fi/problemset/" target="_blank">cses.fi</a>
+          saytındakı <i>Sorting and Searching</i> bölməsi altındakı bütün
+          məsələlərdir. Bu məsələlərin hamısı çox önəmlidirlər.
+        </p>
+        <p class="mt-2">
+          Ev tapşırıqları üçün
+          <a href="https://www.eolymp.com" target="_blank">eolymp</a> saytında
+          yaratdığım qrup var. Əgər qrupa dəvət almamısınızsa, Piazza-da
+          "E-olymp qrupu üçün" başlıqlı paylaşımın altına istifadəçi adınızı
+          qeyd edin. Dərsdə dediyim kimi, ev tapşırığının məqsədi sizin üçün
+          praktikadır, gələn dərsə qədər bitirməyə ehtiyac yoxdur. Bəzi
+          məsələlərin həllini bilirsinizsə və onlar sizin üçün asandırsa, etməyə
+          də bilərsiniz.
+        </p>
+      </section>
+    </main>
+    <script src="/dist/prism.js"></script>
+  </body>
+</html>
