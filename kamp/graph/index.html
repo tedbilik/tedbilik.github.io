@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TED Bilik Kursları</title>
+    <link rel="stylesheet" href="/dist/styles.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap");
+      body {
+        font-family: "Source Sans Pro", sans-serif;
+      }
+      pre > code.language-cpp {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      @media print {
+        * {
+          color: #000 !important;
+        }
+        code,
+        .token {
+          text-shadow: none !important;
+        }
+        pre[class*="language-"],
+        code {
+          box-shadow: none !important;
+        }
+        p.border {
+          border-width: 2px;
+          border-color: darkslategray;
+        }
+        * {
+          box-shadow: none;
+          -webkit-box-shadow: none;
+        }
+        .no-print {
+          display: none;
+        }
+        ::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/dist/prism.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+      integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
+      crossorigin="anonymous"
+    />
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+      integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+      integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true },
+          ],
+          // • rendering keys, e.g.:
+          throwOnError: false,
+        });
+      });
+    </script>
+  </head>
+  <body class="bg-neutral-800" lang="az">
+    <main
+      class="text-neutral-200 min-h-screen w-screen px-5 max-w-4xl text-lg mx-auto py-5 language-cpp"
+    >
+      <header class="flex flex-col items-center">
+        <a href=".." class="mb-2 flex items-center gap-2 no-underline no-print">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-90deg-up"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"
+            />
+          </svg>
+          <span>Geri qayıt</span></a
+        >
+        <h1 class="flex justify-center text-3xl">Dərs 4: Qraflar</h1>
+      </header>
+      <section class="mt-6 no-print">
+        <h2 class="text-2xl">Dərsin videosu</h2>
+        <iframe
+          class="my-4"
+          width="100%"
+          height="400px"
+          src="https://www.youtube.com/embed/X7sWV68su9Q"
+          title="İnformatika Olimpiadası Hazırlığı üçün Qış Kampı (2023) - Dərs 4"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </section>
+      <section class="mt-6">
+        <header class="flex items-center justify-between">
+          <h2 class="text-2xl">Qeydlər</h2>
+          <button
+            onclick="window.print()"
+            class="border rounded-xl px-2 py-1 bg-neutral-700 no-print hover:bg-neutral-900"
+          >
+            Qeydləri çap et
+          </button>
+        </header>
+        <p class="text-center text-red-400 text-xl my-3">
+          Bu dərsin qeydləri hələ tam deyil. Əlavə olunana qədər dərsin
+          videosuna baxmağınız tövsiyə olunur. Sonda əlavə resurslar bölməsinə
+          baxmağı da unutmayın.
+        </p>
+        <p class="mt-4">
+          Sonuncu dərs! Bu dərsdə qraflar haqqında danışacağıq. Qraflar haqqında
+          saysız sayda alqoritm var, amma bu dərsdə elə şeylər öyrənəcəyik ki,
+          əvvəlki respublika olimpiadalarına düşmüş məsələləri həll edə bilək.
+        </p>
+        <p class="mt-4">
+          Qraflar haqqında ümumi danış. Onları C++-da necə göstəririk (matrix və
+          qonşuluq listi). Ağaclar haqqında danış.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/en/problems/977" target="_blank"
+            >Ağac?</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/en/problems/978" target="_blank"
+            >Ağac tap</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4">DFS haqqında daha geniş danış.</p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/en/problems/2269" target="_blank"
+            >Komponentlər</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4">Cycle tapmaq haqqında danış.</p>
+        <pre><code>int n;
+vector&lt;vector&lt;int>> adj;
+vector&lt;char> color;
+vector&lt;int> parent;
+int cycle_start, cycle_end;
+
+bool dfs(int v) {
+    color[v] = 1;
+    for (int u : adj[v]) {
+        if (color[u] == 0) {
+            parent[u] = v;
+            if (dfs(u)) return true;
+        } else if (color[u] == 1) {
+            cycle_end = v;
+            cycle_start = u;
+            return true;
+        }
+    }
+    color[v] = 2;
+    return false;
+}
+
+void find_cycle() {
+    color.assign(n, 0);
+    parent.assign(n, -1);
+    cycle_start = -1;
+
+    for (int v = 0; v &lt; n; v++) {
+        if (color[v] == 0 && dfs(v)) break;
+    }
+
+    if (cycle_start == -1) {
+        cout &lt;&lt; "Cycle yoxdur" &lt;&lt; endl;
+    } else {
+        vector&lt;int> cycle;
+        cycle.push_back(cycle_start);
+        for (int v = cycle_end; v != cycle_start; v = parent[v])
+            cycle.push_back(v);
+        cycle.push_back(cycle_start);
+        reverse(cycle.begin(), cycle.end());
+
+        cout &lt;&lt; "Cycle var: ";
+        for (int v : cycle)
+            cout &lt;&lt; v &lt;&lt; " ";
+        cout &lt;&lt; endl;
+    }
+}</code></pre>
+        <p class="mt-4">İkili rəngləmə haqqında danış.</p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/en/problems/3165" target="_blank"
+            >İkili rəngləmə</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/az/problems/9006" target="_blank"
+            >Çayı keçmək</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4">Topological sort haqqında danış.</p>
+        <pre><code>int n; // number of vertices
+vector&lt;vector&lt;int>> adj; // adjacency list of graph
+vector&lt;bool> visited;
+vector&lt;int> ans;
+
+void dfs(int v) {
+    visited[v] = true;
+    for (int u : adj[v]) {
+        if (!visited[u])
+            dfs(u);
+    }
+    ans.push_back(v);
+}
+
+void topological_sort() {
+    visited.assign(n, false);
+    ans.clear();
+    for (int i = 0; i &lt; n; ++i) {
+        if (!visited[i])
+            dfs(i);
+    }
+    reverse(ans.begin(), ans.end());
+}</code></pre>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://cses.fi/problemset/task/1679" target="_blank"
+            >Kurs cədvəli</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4">Xanalar üzərində DFS haqqında danış.</p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="/kamp/media/largest_island.pdf" target="_blank"
+            >Ən böyük ada</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4">BFS haqqında danış.</p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/en/problems/4369" target="_blank"
+            >Yanğın</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/en/problems/1060" target="_blank"
+            >Xətlər</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/en/problems/4850" target="_blank"
+            >Sehr qutusu</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4">Dijkstra alqoritmi haqqında danış.</p>
+        <pre><code>const int INF = 1000000000;
+vector&lt;vector&lt;pair&lt;int, int>>> adj;
+using pii = pair&lt;int, int>;
+
+void dijkstra(int s, vector&lt;int> & d, vector&lt;int> & p) {
+    int n = adj.size();
+    d.assign(n, INF);
+    p.assign(n, -1);
+    d[s] = 0;
+    priority_queue&lt;pii, vector&lt;pii>, greater&lt;pii>> q;
+    q.push({0, s});
+    while (!q.empty()) {
+        int v = q.top().second;
+        int d_v = q.top().first;
+        q.pop();
+        if (d_v != d[v]) continue;
+        for (auto edge : adj[v]) {
+            int to = edge.first;
+            int len = edge.second;
+            if (d[v] + len &lt; d[to]) {
+                d[to] = d[v] + len;
+                p[to] = v;
+                q.push({d[to], to});
+            }
+        }
+    }
+}</code></pre>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/az/problems/10456" target="_blank"
+            >Server</a
+          >
+          məsələsini həll et.
+        </p>
+        <p class="mt-4">Floyd-Warshall alqoritmi haqqında danış.</p>
+        <pre><code>for (int k = 0; k &lt; n; ++k) {
+    for (int i = 0; i &lt; n; ++i) {
+        for (int j = 0; j &lt; n; ++j) {
+            if (d[i][k] &lt; INF && d[k][j] &lt; INF)
+                d[i][j] = min(d[i][j], d[i][k] + d[k][j]); 
+        }
+    }
+}</code></pre>
+        <p class="mt-4 border p-3 rounded-xl">
+          <span class="font-semibold">Özünü yoxla</span>
+          <br />
+          <a href="https://www.eolymp.com/az/problems/9003" target="_blank"
+            >Qədim Azərbaycan</a
+          >
+          məsələsini həll et.
+        </p>
+      </section>
+      <section class="mt-6">
+        <h2 class="text-2xl">Əlavə faydalı resurslar</h2>
+        <ul class="mt-2 ml-8 list-disc">
+          <li>
+            <a href="https://cses.fi/book/book.pdf" target="_blank"
+              >CSES Kitabında</a
+            >
+            11-16-cı fəsillər (maraqlananlar üçün bütün Qraflar bölməsi).
+          </li>
+          <li>
+            <a href="https://usaco.guide/silver" target="_blank"
+              >USACO Guide Silver</a
+            >
+            səhifəsində <i>Depth First Search (DFS)</i>, <i>Flood Fill</i> və
+            <i>Introduction to Tree Algorithms</i> bölmələri.
+          </li>
+          <li>
+            <a href="https://usaco.guide/gold" target="_blank"
+              >USACO Guide Gold</a
+            >
+            səhifəsində <i>Breadth First Search (BFS)</i>,
+            <i>Topological Sort</i> və
+            <i>Shortest Paths with Non-Negative Edge Weights</i> bölmələri.
+          </li>
+          <li>
+            <a href="https://cp-algorithms.com/" target="_blank"
+              >cp-algorithms</a
+            >
+            saytında
+            <a
+              href="https://cp-algorithms.com/graph/breadth-first-search.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >BFS</a
+            >,
+            <a
+              href="https://cp-algorithms.com/graph/depth-first-search.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >DFS</a
+            >,
+            <a
+              href="https://cp-algorithms.com/graph/search-for-connected-components.html#an-algorithm-for-solving-the-problem"
+              target="_blank"
+              rel="noopener noreferrer"
+            ></a>
+            <a
+              href="https://cp-algorithms.com/graph/dijkstra_sparse.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Dijkstra</a
+            >,
+            <a
+              href="https://cp-algorithms.com/graph/all-pair-shortest-path-floyd-warshall.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Floyd-Warshall</a
+            >,
+            <a
+              href="https://cp-algorithms.com/graph/finding-cycle.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Cycle</a
+            >.
+          </li>
+        </ul>
+      </section>
+      <section class="mt-6 no-print" id="homework">
+        <h2 class="text-2xl">Ev tapşırığı</h2>
+        <p class="mt-2">
+          Ev tapşırıqları üçün
+          <a href="https://www.eolymp.com" target="_blank">eolymp</a> saytında
+          yaratdığım qrup var. Əgər qrupa dəvət almamısınızsa, Piazza-da
+          "E-olymp qrupu üçün" başlıqlı paylaşımın altına istifadəçi adınızı
+          qeyd edin. Dərsdə dediyim kimi, ev tapşırığının məqsədi sizin üçün
+          praktikadır, gələn dərsə qədər bitirməyə ehtiyac yoxdur. Bəzi
+          məsələlərin həllini bilirsinizsə və onlar sizin üçün asandırsa, etməyə
+          də bilərsiniz.
+        </p>
+      </section>
+    </main>
+    <script src="/dist/prism.js"></script>
+  </body>
+</html>
