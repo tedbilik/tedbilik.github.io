@@ -42,21 +42,21 @@
           while (questions[this.qIndex].reset) {
             if (this.correctCount < questions[this.qIndex].need) {
               const f = questions[this.qIndex].fail;
-              fetch("https://3d459b3.online-server.cloud/create", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  name: this.name,
-                  grade: this.grade,
-                  answers: this.answers,
-                  phoneNumber: this.phoneNum,
-                  email: this.email,
-                  classType: this.classType,
-                  decision: f,
-                }),
-              });
+              // fetch("https://3d459b3.online-server.cloud/create", {
+              //   method: "POST",
+              //   headers: {
+              //     "Content-Type": "application/json",
+              //   },
+              //   body: JSON.stringify({
+              //     name: this.name,
+              //     grade: this.grade,
+              //     answers: this.answers,
+              //     phoneNumber: this.phoneNum,
+              //     email: this.email,
+              //     classType: this.classType,
+              //     decision: f,
+              //   }),
+              // });
 
               if (f === 1) {
                 this.doneMessage =
@@ -64,7 +64,7 @@
               }
               if (f === 1.5) {
                 this.doneMessage =
-                  "Əla! Sizin üçün İ1 sinfini tövsiyə edirik, amma yaxşı nəticə göstərdiyiniz üçün İ2 sinfi də uyğun ola bilər. Zəhmət olmasa, bizimlə əlaqə saxlayın və sizin üçün kursun müəllif-müəllimləri Abutalıb-Barış Namazov və Emin Orucov ilə görüş təşkil edək ki, sinif seçiminizi dəqiqləşdirəsiniz. Sizi kursumuzda görmək çox xoş olardı!";
+                  "Əla! Sizin üçün İ1 sinfini tövsiyə edirik, amma yaxşı nəticə göstərdiyiniz üçün İ2 sinfi də uyğun ola bilər. Zəhmət olmasa, bizimlə əlaqə saxlayın və sizin üçün kursun müəllimləri ilə görüş təşkil edək ki, sinif seçiminizi dəqiqləşdirəsiniz. Sizi kursumuzda görmək çox xoş olardı!";
               }
               if (f === 2) {
                 this.doneMessage =
@@ -72,11 +72,11 @@
               }
               if (f === 2.5) {
                 this.doneMessage =
-                  "Təbriklər, çox əla nəticə göstərdiniz! Sizin üçün İ2 sinfini tövsiyə edirik, amma yaxşı nəticə göstərdiyiniz üçün İ3 sinfi də uyğun ola bilər. Zəhmət olmasa, bizimlə əlaqə saxlayın və sizin üçün kursun müəllif-müəllimləri Abutalıb-Barış Namazov və Emin Orucov ilə görüş təşkil edək ki, sinif seçiminizi dəqiqləşdirəsiniz. Sizi kursumuzda görmək çox xoş olardı!";
+                  "Təbriklər, çox əla nəticə göstərdiniz! Sizin üçün İ2 sinfini tövsiyə edirik, amma yaxşı nəticə göstərdiyiniz üçün İ3 sinfi də uyğun ola bilər. Zəhmət olmasa, bizimlə əlaqə saxlayın və sizin üçün kursun müəllimləri ilə görüş təşkil edək ki, sinif seçiminizi dəqiqləşdirəsiniz. Sizi kursumuzda görmək çox xoş olardı!";
               }
               if (f === 3) {
                 this.doneMessage =
-                  "Təbrik edirik, ən yaxşı nəticəni göstərdiniz! Sizin üçün İ3 sinifini uyğun görürük. Bu sinifin hazırlığı intensiv və dərindir, ona görə də, sizə təklif edirik ki, bizimlə əlaqə saxlayın və sizin üçün kursun müəllif-müəllimləri Abutalıb-Barış Namazov və Emin Orucov ilə görüş təşkil edək. Sizi kursumuzda görmək çox xoş olardı!";
+                  "Təbrik edirik, ən yaxşı nəticəni göstərdiniz! Sizin üçün İ3 sinifini uyğun görürük. Bu sinifin hazırlığı intensiv və dərindir, ona görə də, sizə təklif edirik ki, bizimlə əlaqə saxlayın və sizin üçün kursun müəllimləri ilə görüş təşkil edək. Sizi kursumuzda görmək çox xoş olardı!";
               }
             }
             this.correctCount = 0;

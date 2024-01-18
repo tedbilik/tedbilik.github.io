@@ -1,114 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TED Bilik Kursları</title>
-    <link rel="stylesheet" href="/dist/styles.css" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap");
-      body {
-        font-family: "Source Sans Pro", sans-serif;
-      }
-    </style>
-  </head>
-  <body class="bg-neutral-800">
-    <main
-      class="text-neutral-200 flex h-screen w-screen flex-col items-center max-w-4xl mx-auto text-xl"
-    >
-      <header class="flex flex-col items-center justify-center gap-3 p-5">
-        <img
-          src="/ted-logo.png"
-          alt="ted bilik"
-          class="w-8/12 max-w-md rounded-2xl bg-neutral-200 p-4"
-        />
-        <h1
-          class="font-bold text-neutral-200 text-center flex flex-col text-2xl"
-        >
-          <span>TED Kursları</span>
-        </h1>
-      </header>
-      <section class="flex flex-col gap-5">
-        <a href="/informatika" class="text-inherit no-underline">
-          <article
-            class="w-[90%] mx-auto border border-neutral-200 rounded-xl p-3 flex gap-3 hover:bg-neutral-900 hover:cursor-pointer"
-          >
-            <div class="flex flex-col gap-1">
-              <span>
-                İnformatika Olimpiadalarına Hazırlıq Kursları &mdash; sinif
-                bəlirləmə sorğusu
-              </span>
-              <span class="text-base"
-                >Əgər olimpiadalarla hazırlıqla maraqlanırsınızsa, bu sorğunu
-                dolduraraq hansı sinifə uyğun gəldiyinizi öyrənə
-                bilərsiniz.</span
-              >
-            </div>
-            <div class="ml-auto flex items-center scale-150">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-chevron-right"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                />
-              </svg>
-            </div>
-          </article>
-        </a>
-        <a href="/kamp" class="text-inherit no-underline">
-          <article
-            class="w-[90%] mx-auto border border-neutral-200 rounded-xl p-3 flex gap-3 hover:bg-neutral-900 hover:cursor-pointer"
-          >
-            <div class="flex flex-col gap-1">
-              <span> İnformatika Olimpiadası &mdash; Qış Kampı 2023</span>
-              <span class="text-base"
-                >Yarımfinal mərhələsinə hazırlıq üçün qış kampının bütün
-                materialları burada yerləşdiriləcək.</span
-              >
-            </div>
-            <div class="ml-auto flex items-center scale-150">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-chevron-right"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                />
-              </svg>
-            </div>
-          </article>
-        </a>
-      </section>
-      <section class="mt-5">
-        <div class="h-px w-full my-2 bg-slate-50"></div>
-        <p class="flex flex-col px-5 mb-5">
-          <span class="italic">Əlaqə nömrələrimiz:</span>
-          <span class="pl-8">+994 55 939 88 48 (Zəng və Whatsapp)</span>
-          <span class="pl-8">+994 12 538 29 85</span>
-          <span class="mt-2 italic">Emaillərimiz:</span>
-          <a class="pl-8" href="mailto:ted@bilik.edu.az">ted@bilik.edu.az</a>
-          <a class="pl-8" href="mailto:dahimatik@gmail.com"
-            >dahimatik@gmail.com</a
-          >
 
-          <span class="mt-2 italic">Kursumuzun adresi:</span>
-          <span class="pl-8"
-            >Zahid Xəlil küçəsi 23, 5-ci mərtəbə (Baku Dövlət Universiteti ilə üzbəüz küçə, Araz Marketin yanı)</span
-          >
-        </p>
-      </section>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TED Bilik Kursları</title>
+  <link rel="stylesheet" href="/dist/styles.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap");
+
+    body {
+      font-family: "Source Sans Pro", sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-neutral-800">
+  <main class="text-neutral-200 flex h-screen w-screen flex-col items-center max-w-4xl mx-auto text-xl">
+    <header class="flex flex-col items-center justify-center gap-3 p-5">
+      <img src="/ted-logo.png" alt="ted bilik" class="w-8/12 max-w-md rounded-2xl bg-neutral-200 p-4" />
+      <h1 class="font-bold text-neutral-200 text-center flex flex-col text-2xl">
+        <span>TED Kursları</span>
+      </h1>
+    </header>
+    <section class="flex flex-col gap-5">
+      <a href="/informatika" class="text-inherit no-underline">
+        <article
+          class="w-[90%] mx-auto border border-neutral-200 rounded-xl p-3 flex gap-3 hover:bg-neutral-900 hover:cursor-pointer">
+          <div class="flex flex-col gap-1">
+            <span>
+              İnformatika Olimpiadalarına Hazırlıq Kursları &mdash; sinif
+              bəlirləmə sorğusu
+            </span>
+            <span class="text-base">Əgər olimpiadalarla hazırlıqla maraqlanırsınızsa, bu sorğunu
+              dolduraraq hansı sinifə uyğun gəldiyinizi öyrənə
+              bilərsiniz.</span>
+          </div>
+          <div class="ml-auto flex items-center scale-150">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+          </div>
+        </article>
+      </a>
+      <a href="/kamp" class="text-inherit no-underline">
+        <article
+          class="w-[90%] mx-auto border border-neutral-200 rounded-xl p-3 flex gap-3 hover:bg-neutral-900 hover:cursor-pointer">
+          <div class="flex flex-col gap-1">
+            <span> İnformatika Olimpiadası &mdash; Qış Kampı 2023</span>
+            <span class="text-base">Yarımfinal mərhələsinə hazırlıq üçün qış kampının bütün
+              materialları burada yerləşdiriləcək.</span>
+          </div>
+          <div class="ml-auto flex items-center scale-150">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+          </div>
+        </article>
+      </a>
+      <a href="/kamp2024" class="text-inherit no-underline">
+        <article
+          class="w-[90%] mx-auto border border-neutral-200 rounded-xl p-3 flex gap-3 hover:bg-neutral-900 hover:cursor-pointer">
+          <div class="flex flex-col gap-1">
+            <span> İnformatika Olimpiadası &mdash; Qış Kampı 2024</span>
+            <span class="text-base">Keçən ilki kampın davamı olaraq daha irəli mövzuları öyrənəcəksiniz!</span>
+          </div>
+          <div class="ml-auto flex items-center scale-150">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+          </div>
+        </article>
+      </a>
+    </section>
+    <section class="mt-5">
+      <div class="h-px w-full my-2 bg-slate-50"></div>
+      <p class="flex flex-col px-5 mb-5">
+        <span class="italic">Əlaqə nömrələrimiz:</span>
+        <span class="pl-8">+994 55 939 88 48 (Zəng və Whatsapp)</span>
+        <span class="pl-8">+994 12 538 29 85</span>
+        <span class="mt-2 italic">Emaillərimiz:</span>
+        <a class="pl-8" href="mailto:ted@bilik.edu.az">ted@bilik.edu.az</a>
+        <a class="pl-8" href="mailto:dahimatik@gmail.com">dahimatik@gmail.com</a>
+
+        <span class="mt-2 italic">Kursumuzun adresi:</span>
+        <span class="pl-8">Zahid Xəlil küçəsi 23, 5-ci mərtəbə (Baku Dövlət Universiteti ilə üzbəüz küçə, Araz Marketin
+          yanı)</span>
+      </p>
+    </section>
+  </main>
+</body>
+
 </html>

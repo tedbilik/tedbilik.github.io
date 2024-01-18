@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TED Bilik Kursları</title>
+  <link rel="stylesheet" href="/dist/styles.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap");
+
+    body {
+      font-family: "Source Sans Pro", sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-neutral-800 break-words">
+  <main class="text-neutral-200 min-h-screen w-screen px-5 max-w-4xl text-lg mx-auto py-5">
+    <h1 class="flex justify-center text-3xl">İnformatika Qış Kampı 2024</h1>
+    <section class="mt-6">
+      <div class="flex flex-col sm:flex-row gap-0 sm:gap-3 p-3 border rounded-xl">
+        <span class="text-[5em] flex justify-center items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-[1em] h-[1em]"
+            viewBox="0 0 16 16">
+            <path
+              d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.553.553 0 0 1-1.1 0L7.1 4.995z" />
+          </svg>
+        </span>
+        <div>
+          <p>
+            Bu kampın mövzuları <a href="/kamp">Qış Kampı 2023</a>-də keçilən mövzuların davamıdır. Odur ki, ilk olaraq o
+            kampın mövzularını oxumağınız yaxud yada salmağınız mütləqdir. Bu kamp isə RFO-nun final mərhələsində medala
+            iddiaçılar üçün nəzərdə tutulmuşdur. Uğurlar arzu edirik!
+          </p>
+          <p>Dərslər üçün Zoom linki: <a href="https://mit.zoom.us/j/96754793263" target="_blank" rel="noopener noreferrer">https://mit.zoom.us/j/96754793263</a> </p>
+        </div>
+      </div>
+    </section>
+    <section class="mt-6">
+      <h2 class="text-2xl">Tanışlıq</h2>
+      <p class="mt-2">
+        Hamıya salam! Bu, kampımızın veb səhifəsidir. Burada dərslərin
+        qeydləri, ev tapşırıqları, əlavə resurslar və başqa dəyərli resurslar
+        paylaşılacaq. Bu səhifə həm kamp boyu, həm də daha sonra həmişəlik
+        əlçatan olacaq. Əgər səhifədə bir yanlışlıqla qarşılasşanız, Piazza
+        forumunda bu haqda paylaşa bilərsiniz.
+      </p>
+    </section>
+    <section class="mt-6">
+      <h2 class="text-2xl">Müəllimlər</h2>
+      <p class="mt-2">
+        Kampın müəllimləri keçmiş medalçılar və məşhur olimpiadaçılardır:
+      <ul class="list-disc ml-8">
+        <li>Abutalıb-Barış Namazov</li>
+        <li>Emin Orucov</li>
+        <li>Əziz Hüseynov</li>
+        <li>İbrahim Tağızadə</li>
+        <li>Rəşad Məmmədov</li>
+        <li>Rəvan Qasımzadə</li>
+        <li>Saleh İsayev</li>
+      </ul>
+      </p>
+    </section>
+    <section class="mt-4">
+      <h2 class="text-2xl">Kampın haqqında</h2>
+      <p class="mt-2">
+        Kamp hamı üçün açıq və tamamilə ödənişsizdir. Nəzərə alın ki,
+        dərslər çox intensiv və sürətli proqram ilə keçiləcək, amma bütün
+        dərslərin videoları və onlar üçün etdiyim qeydlər buraya
+        yerləşdiriləcək. Hansısa mövzunu başa düşməsəniz, mütləq Piazza
+        platformasında sual yazın. Kampın müddəti boyunca oradakı bütün
+        suallara cavab yazılacaq. Əgər sizin təcrübəniz daha çoxdursa və ya
+        dərsləri çox yaxşı başa düşürsünüzsa, orada başqalarının suallarını
+        cavablandırmaqdan çəkinməyin.
+      </p>
+    </section>
+    <section class="mt-4">
+      <h2 class="text-2xl">Nə öyrənəcəksiniz</h2>
+      <p class="mt-2">
+        Kamp irəli mövzuları əhatə edir. Müəllimlərin çoxunun təcrübəsinə görə, bu
+        mövzuları əla mənimsəmək RFO-nun finalında qızıl medal almaq üçün atılmalı önəmli addımdır.
+      </p>
+      <div class="overflow-x-auto mt-4">
+        <table class="min-w-full bg-slate-300">
+          <thead class="bg-gray-800 text-white">
+            <tr>
+              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Mövzu</th>
+              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Tarix</th>
+              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Müəllim</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700" id="schedule">
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="mt-4" id="classes">
+      <h2 class="text-2xl">Dərslərin qeydləri və materialları</h2>
+      <p>Daha sonra yerləşdiriləcək.</p>
+    </section>
+  </main>
+</body>
+
+</html>
+
+<script type="module">
+  const schedule = [
+    { label: '1. Binary Search və aid məsələlər', date: 'Yanvar 22, b.e.', teacher: 'Rəvan Qasımzadə' },
+    { label: 'Ev tapşırığı üzərində çalışma günü', date: 'Yanvar 23', teacher: '' },
+    { label: '2. String Hashing', date: 'Yanvar 24, ç.', teacher: 'Barış Namazov' },
+    { label: 'Ev tapşırığı üzərində çalışma günü', date: 'Yanvar 25', teacher: '' },
+    { label: '3. Bit ilə həll olan məsələlər, Trie strukturu', date: 'Yanvar 26, c.', teacher: 'Barış Namazov' },
+    { label: '4. Bitmask və Meet in the Middle', date: 'Yanvar 27, b.', teacher: 'Əziz Hüseynov' },
+    { label: 'Ev tapşırığı üzərində çalışma günləri', date: 'Yanvar 28-29', teacher: '' },
+    { label: '5. Segment Tree və aid məsələlər', date: 'Yanvar 30, ç.ə.', teacher: 'İbrahim Tağızadə' },
+    { label: '6. Lazy Propagation, Dynamic Segment Tree və aid məsələlər', date: 'Yanvar 31, ç.', teacher: 'İbrahim Tağızadə' },
+    { label: 'Ev tapşırığı üzərində çalışma günləri', date: 'Fevral 1-2', teacher: '' },
+    { label: '7. Qısa yollar (Dijkstra, Bellman Ford, Floyd Warshall)', date: 'Fevral 3, ş.', teacher: 'Emin Orucov' },
+    { label: 'Ev tapşırığı üzərində çalışma günü', date: 'Fevral 4', teacher: '' },
+    { label: '8. Ağac alqoritmləri və Ağac DP', date: 'Fevral 5, b.e.', teacher: 'Rəşad Məmmədov' },
+    { label: 'Ev tapşırığı üzərində çalışma günü', date: 'Fevral 6', teacher: '' },
+    { label: '9. Spanning Tree (Kruskal, Union-Find)', date: 'Fevral 7, ç.', teacher: 'Saleh İsayev' },
+    { label: 'Ev tapşırığı üzərində çalışma günləri', date: 'Fevral 8-9-10', teacher: '' },
+    { label: '10. Maraton Yarışı', date: 'Fevral 11, b.', teacher: '' },
+  ];
+
+
+  document.querySelector("#schedule").innerHTML = schedule.map(({ label, date, teacher }) => `
+    <tr class="border-b ${teacher ? 'bg-gray-200' : ''}">
+      <td class="text-left py-3 px-4">${label}</td>
+      <td class="text-left py-3 px-4">${date}</td>
+      <td class="text-left py-3 px-4">${teacher}</td>
+    </tr>
+  `).join('');
+</script>

@@ -4,7 +4,9 @@ module.exports = {
     "./*.{html,js}",
     "./informatika/*.{html,js}",
     "./kamp/*.{html,js}",
-    "./kamp/**/*.{html,js}",
+    "./kamp/**/*.{html,js}",,
+    "./kamp2024/**/*.{html,js}",,
+
   ],
   theme: {
     extend: {},
