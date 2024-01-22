@@ -31,11 +31,13 @@
         <div>
           <p>
             Bu kampın mövzuları <a href="/kamp">Qış Kampı 2023</a>-də keçilən dərslərin davamıdır. Odur ki, ilk olaraq o
-            kampın mövzularını oxumağınız, yaxud yada salmağınız mütləqdir. Bu kamp isə RFO-nun final mərhələsində medala
+            kampın mövzularını oxumağınız, yaxud yada salmağınız mütləqdir. Bu kamp isə RFO-nun final mərhələsində
+            medala
             iddiaçılar üçün nəzərdə tutulmuşdur. Uğurlar arzu edirik!
           </p>
           <p>Dərslər saat 18:00-da <a href="#schedule">cədvəldə</a> yazılmış tarixlərdə olacaqdır.</p>
-          <p>Dərslər üçün Zoom linki: <a href="https://mit.zoom.us/j/96754793263" target="_blank" rel="noopener noreferrer">https://mit.zoom.us/j/96754793263</a> </p>
+          <p>Dərslər üçün Zoom linki: <a href="https://mit.zoom.us/j/96754793263" target="_blank"
+              rel="noopener noreferrer">https://mit.zoom.us/j/96754793263</a> </p>
         </div>
       </div>
     </section>
@@ -73,7 +75,8 @@
         dərslər çox intensiv və sürətli proqram ilə keçiləcək, amma bütün
         dərslərin videoları və onlar üçün qeydlər buraya
         yerləşdiriləcək.
-        Hər dərsin ev tapşırıqları olacaq və bu tapşırıqların həlli uyğun dərsdən 1 həftə sonra kod şəklində paylaşılacaq.
+        Hər dərsin ev tapşırıqları olacaq və bu tapşırıqların həlli uyğun dərsdən 1 həftə sonra kod şəklində
+        paylaşılacaq.
       </p>
     </section>
     <section class="mt-4">
@@ -101,9 +104,14 @@
     </section>
     <section class="mt-4" id="classes">
       <h2 class="text-2xl">Dərslərin qeydləri və materialları</h2>
-      <p>Ev tapşırıqları <a href="https://vjudge.net/group/kamp2024" target="_blank" rel="noopener noreferrer">https://vjudge.net/group/kamp2024</a> keçidində yerləşir. VJudge saytında qeydiyyat edin və qrupa "Join Now" düyməsi ilə daxil olun.</p>
-      
+      <p>Ev tapşırıqları <a href="https://vjudge.net/group/kamp2024" target="_blank"
+          rel="noopener noreferrer">https://vjudge.net/group/kamp2024</a> keçidində yerləşir. VJudge saytında qeydiyyat
+        edin və qrupa "Join Now" düyməsi ilə daxil olun.</p>
+      <div id="lessons" class="mt-2">
+
+      </div>
     </section>
+
   </main>
 </body>
 
@@ -130,6 +138,28 @@
     { label: '10. Marafon Yarışı', date: 'Fevral 11, b. (saat 10:00-22:00)', teacher: 'Kənan Əsgərli' },
   ];
 
+  const lessons = [
+    {url: 'binarysearch', name: 'Dərs 1: Binary Search', description: "Monotonluq günü xilas edir!"}
+  ];
+
+  const lessonTemplate = (url, name, description) => `
+    <a href="${url}" class="text-inherit no-underline">
+      <article
+        class="border border-neutral-200 rounded-xl px-3 py-2 flex gap-3 hover:bg-neutral-900 hover:cursor-pointer">
+        <div class="flex flex-col gap-1">
+          <span>${name}</span>
+          <span class="text-base">${description}</span>
+        </div>
+        <div class="ml-auto flex items-center scale-150">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+        </div>
+      </article>
+    </a>
+  `;
 
   document.querySelector("#schedule").innerHTML = schedule.map(({ label, date, teacher }) => `
     <tr class="border-b ${teacher ? 'bg-gray-200' : ''}">
@@ -138,4 +168,6 @@
       <td class="text-left py-3 px-4">${teacher}</td>
     </tr>
   `).join('');
+
+  document.querySelector("#lessons").innerHTML = lessons.map(lesson => lessonTemplate(lesson.url, lesson.name, lesson.description)).join('');
 </script>
