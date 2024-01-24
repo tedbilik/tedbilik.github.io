@@ -165,9 +165,9 @@
       <p class="mt-2">
         İndi belə bir məsələyə baxaq. Bizə $n$ söz verilir, hərəsinin uzunluğu $m$-ə bərabərdir.
         Onların arasında neçə fərqli söz var?
-        Ağlımıza bir neçə sadə həll gələ bilər. Məsələn, bütün sözləri $set$ strukturuna qoymaq və sonra onun uzunluğunu
+        Ağlımıza bir neçə sadə həll gələ bilər. Məsələn, bütün sözləri <code>set</code> strukturuna qoymaq və sonra onun uzunluğunu
         tapmaq. Yaxud bu sözləri sort edib ardıcıl gələn sözləri yoxlamaq. Bu iki həllin də zaman çətinliyi $O(nm\log
-        n)$ olur. Çünki $n$ söz var və biz onları sort edəndə yaxud set strukturuna daxil edəndə onlar arasında
+        n)$ olur. Çünki $n$ söz var və biz onları sort edəndə yaxud <code>set</code> strukturuna daxil edəndə onlar arasında
         müqayisələr edirik. Bizim halda isə müqayisələr üçün $O(m)$ vaxt lazımdır.
         Biz isə daha yaxşı həll yaza bilərik. Sözlərin hash dəyərini tapaq, sonra isə məsələni ədədlər üzərində həll
         edək.
@@ -239,7 +239,7 @@ int main() {
         <a href="https://oj.uz/problem/view/CEOI17_palindromic" target="_blank">Palindromic Partitions (CEOI 2017)</a>
         məsələsini həll et.
       </p>
-      <p>Kömək üçün $check_equal$ funksiyasına baxa bilərsiniz:</p>
+      <p class="mt-4">Kömək üçün <code>check_equal</code> funksiyasına baxa bilərsiniz:</p>
 <pre><code>const int N = 1e6 + 5;
 const int P = 43;
 const int M = 1e9 + 7;
@@ -267,7 +267,8 @@ int main() {
   h[0] = 0;
   for (int i = 1; i <= n; i++) {
     h[i] = (h[i - 1] + 1LL * (s[i - 1] - 'a' + 1) * p[i - 1] % M) % M;
-  }</code></pre>
+  }
+}</code></pre>
     </section>
     <section class="mt-6">
       <h2 class="text-2xl">Əlavə faydalı resurslar</h2>
