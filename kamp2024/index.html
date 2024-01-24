@@ -38,6 +38,9 @@
           <p>Dərslər saat 18:00-da <a href="#schedule">cədvəldə</a> yazılmış tarixlərdə olacaqdır.</p>
           <p>Dərslər üçün Zoom linki: <a href="https://mit.zoom.us/j/96754793263" target="_blank"
               rel="noopener noreferrer">https://mit.zoom.us/j/96754793263</a> </p>
+          <p>Piazza qeydiyyat linki: <a href="https://piazza.com/informatika_olimpiadalar_mktbi/winter2024/winter2024"
+              target="_blank"
+              rel="noopener noreferrer">https://piazza.com/informatika_olimpiadalar_mktbi/winter2024/winter2024</a></p>
         </div>
       </div>
     </section>
@@ -139,13 +142,14 @@
   ];
 
   const lessons = [
-    {url: 'binarysearch', name: 'Dərs 1: Binary Search', description: "Monotonluq günü xilas edir!"}
+    { url: 'binarysearch', name: 'Dərs 1: Binary Search', description: "Monotonluq günü xilas edir!" },
+    { url: 'hashing', name: 'Dərs 2: String Kodlaması', description: "Stringləri ədəd kimi ifadə etməyin ağıllı yolu." }
   ];
 
   const lessonTemplate = (url, name, description) => `
     <a href="${url}" class="text-inherit no-underline">
       <article
-        class="border border-neutral-200 rounded-xl px-3 py-2 flex gap-3 hover:bg-neutral-900 hover:cursor-pointer">
+        class="mt-4 border border-neutral-200 rounded-xl px-3 py-2 flex gap-3 hover:bg-neutral-900 hover:cursor-pointer">
         <div class="flex flex-col gap-1">
           <span>${name}</span>
           <span class="text-base">${description}</span>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İnformatika Qış Kampı 2024</title>
+  <link rel="stylesheet" href="/dist/styles.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap");
+
+    body {
+      font-family: "Source Sans Pro", sans-serif;
+    }
+
+    pre>code.language-cpp {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    @media print {
+      * {
+        color: #000 !important;
+      }
+
+      code,
+      .token {
+        text-shadow: none !important;
+      }
+
+      pre[class*="language-"],
+      code {
+        box-shadow: none !important;
+      }
+
+      p.border {
+        border-width: 2px;
+        border-color: darkslategray;
+      }
+
+      * {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+      }
+
+      .no-print {
+        display: none;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="/dist/prism.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous" />
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4"
+    crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // customised options
+        // • auto-render specific keys, e.g.:
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true },
+        ],
+        // • rendering keys, e.g.:
+        throwOnError: false,
+      });
+    });
+  </script>
+</head>
+
+<body class="bg-neutral-800" lang="az">
+  <main class="text-neutral-200 min-h-screen w-screen px-5 max-w-4xl text-lg mx-auto py-5 language-cpp">
+    <header class="flex flex-col items-center">
+      <a href=".." class="mb-2 flex items-center gap-2 no-underline no-print">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-up"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z" />
+        </svg>
+        <span>Geri qayıt</span></a>
+      <h1 class="flex justify-center text-3xl">
+        Dərs 2: String Hashing
+      </h1>
+      <h2>Müəllim: Barış Namazov</h2>
+    </header>
+    <section class="mt-6 no-print">
+      <h2 class="text-2xl">Dərsin videosu</h2>
+      <p>Yüklənəcək.</p>
+    </section>
+    <section class="mt-6">
+      <header class="flex items-center justify-between">
+        <h2 class="text-2xl">Qeydlər</h2>
+        <button onclick="window.print()"
+          class="border rounded-xl px-2 py-1 bg-neutral-700 no-print hover:bg-neutral-900">
+          Qeydləri çap et
+        </button>
+      </header>
+      <h3 class="text-xl mt-2 font-bold">Kontekst</h3>
+      <p class="mt-2">Sətirlərin və sözlərin bir-birinə bərabər olmasını yoxlamaq bizə bəzən lazım olur. Məsələn, sözün
+        palindrom
+        olmağını yoxlamaq üçün, onun tərsinə bərabər olub-olmadığını yoxlayırıq. Yaxud bizə bir milyon uzun söz verilsə,
+        bir sözün orada rast gəlib-gəlməməsini yoxlamaq çətinləşir. Adi halda bu halı necə həll edərik?
+      </p>
+      <p class="mt-2">
+        Sətir kodlaması (hashing) elə bir metoddur ki, biz sözləri riyazi funksiya ilə kodlaşdırıb ədəd kimi başa düşə
+        bilək. Bu
+        alqoritmin istifadəsi olimpiadalarda o qədər də çox düşmür, amma məncə öyrənilməsi çox vacibdir, çünki gündəlik
+        istifadə etdiyimiz başqa strukturları anlamağa yardım edir. Əlavə olaraq, bəzi məsələlərin nəzərdə tutulmuş
+        həlli başqa olsa da, hashing ilə gözlənilməz və maraqlı həllər də ola bilir. Özünüz görəcəksiniz ki, bu metodu
+        yalnız sətirlərə yox, hətta massivlərə də tətbiq etmək olar. Gəlin alqoritmə keçək.
+      </p>
+      <h3 class="text-xl mt-2 font-bold">İzah</h3>
+      <p class="mt-2">Onluq sistemdə ədədləri necə yazdığımızı yadımıza salaq:
+        $$16428 = 1 \cdot 10^4 + 6 \cdot 10^3 + 4 \cdot 10^2 + 2 \cdot 10^1 + 8 \cdot 10^0$$
+      </p>
+      <p class="mt-2">Əslində, sözləri də say sistemində düşünmək olar. Məsələn, $a=1$, $b=2$, $c=3$ kimi say sistemi
+        qursaq,
+        $$abc = 1 \cdot 10^2 + 2 \cdot 10^1 + 3 \cdot 10^0 = 123$$
+        kimi yaza bilərdik. Nəzərə alın ki, burada 10-un qüvvətlərinə vururuq və hərflərimizin sayı 3 ədəd olduğu üçün
+        heç bir kəsişmə olmur.
+        Amma 10 əvəzinə 2-nin qüvvətlərinə vursaq idik, onda kəsişmə ola bilərdi. Məsələn, $abc = 1 \cdot 2^2 + 2 \cdot
+        2^1 + 3 \cdot 2^0 = 7$ və $ca = 3\cdot 2^1 + 1 = 7$ eyni ədədə uyğun gəlir (bizə 7 desələr, onun hansı söz
+        olduğunu tapa bilmərik). Vurduğumuz qüvvət fərqli hərflərin sayından çox olmalıdır ki, qarşılıqlı birəbir
+        funksiya ala bilək.
+      </p>
+      <p class="mt-2">Məsələn, kiçik latın hərfləri ilə işləsəydik, onda 26-lıq say sistemində (orada $a=0, b=1, \dots$
+        və sair) bütün sözləri göstərmək olardı. Amma onda $zz\dots z$ (14 ədəd z hərfi) sözünün hansı ədədə uyğun
+        gəldiyinə baxaq:
+        $$zzz\dots z = \sum_{i=0}^{13} 25\cdot 26^i = 64509974703297150975 > 10^{19}$$
+        Bu ədədi biz C++-da standart tiplərlə ifadə edə bilmirik. Başqa cür ifadə etsək belə, 19 dənə rəqəmi yaddaşda
+        saxlamaq 14 hərfi saxlamaqdan az sürət tələb etməyəcək. Deməli, bizim üçün 26-lıq say sistemi ümumi halda uyğun
+        deyil, xüsusən də böyük sözlər üçün (əgər sözlər çox kiçik olsa idi, işlətmək olardı).
+      </p>
+      <p class="mt-2">
+        Bu problemdən çıxış yolumuz isə çox da çətin deyil: gəlin kəsişmələr ilə razı olaq. Elə funksiya seçək ki, orada
+        həqiqətən də, bayaqkı kimi iki söz eyni ədədə bərabər ola bilsin, amma bu kəsişmələr çox nadir baş verəcək. Sadə
+        $p$ və $M$ ədədləri seçək, $M$ isə böyük olsun. Məsələn, $p=47, M=1000000007$. Sonra isə $a=1, b=2, \cdots z=26$
+        uyğunlamasından istifadə edək. Kodlama funksiyamız ilə belə olsun:
+        $$hash(s) = \sum_{i=0}^{|s|-1} s_i \cdot p^i \mod M$$
+        Məsələn,
+        $$hash(``abc") = 1 \cdot 47^0 + 2 \cdot 47^1 + 3 \cdot 47^2 \mod 1000000007 = 6722$$
+        Bu metod ilə kodlaması kəsişən iki söz tapmaq çətindir. Riyazi baxsaq, iki təsadüfi sözün kodlamasının eyni
+        olması ehtimalı $\frac{1}{M}$, bizim halda milyardda bir olur. Amma sözlərin sayı artdıqca, bu ehtimal da artır.
+        $n$ söz və $M$ kodlama namizədi (yəni, neçə fərqli kodlama var) olsa, onda orada ən azı iki sözün kəsişmə
+        ehtimalı təxminən $1 - e^{-\frac{n^2}{2M}}$ olur. Bunu əzbərdən bilməyə ehtiyac yoxdur, amma haqqında daha
+        aşağıda
+        danışırıq.
+      </p>
+      <p class="mt-2">
+        İndi belə bir məsələyə baxaq. Bizə $n$ söz verilir, hərəsinin uzunluğu $m$-ə bərabərdir.
+        Onların arasında neçə fərqli söz var?
+        Ağlımıza bir neçə sadə həll gələ bilər. Məsələn, bütün sözləri $set$ strukturuna qoymaq və sonra onun uzunluğunu
+        tapmaq. Yaxud bu sözləri sort edib ardıcıl gələn sözləri yoxlamaq. Bu iki həllin də zaman çətinliyi $O(nm\log
+        n)$ olur. Çünki $n$ söz var və biz onları sort edəndə yaxud set strukturuna daxil edəndə onlar arasında
+        müqayisələr edirik. Bizim halda isə müqayisələr üçün $O(m)$ vaxt lazımdır.
+        Biz isə daha yaxşı həll yaza bilərik. Sözlərin hash dəyərini tapaq, sonra isə məsələni ədədlər üzərində həll
+        edək.
+        Hər bir sözün kodlanmış dəyərini tapmaq üçün $O(m)$ vaxt lazımdır. Onda ümumi zaman $O(nm + n\log n)$ olur.
+        Məsələdə $n=10^6$ və $m=20$ olsa idi, daha adi sort ilə olan həll zaman limitini keçməyə bilərdi.
+      </p>
+      <pre><code>#pragma GCC optimize("O3")
+#include &lt;iostream>
+
+using namespace std;
+
+int get_hash(const string &s) {
+  const int p = 43;
+  const int m = 1e9 + 7;
+
+  int h = 0, pow = 1;
+  for (char c : s) {
+    h = (h + 1LL * (c - 'a' + 1) * pow % m) % m;
+    pow = 1LL * pow * p % m;
+  }
+  return h;
+}
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  int n;
+  cin >> n;
+  vector&lt;string> s(n);
+  for (int i = 0; i &lt; n; i++) {
+    cin >> s[i];
+  }
+  vector&lt;int> h(n);
+  for (int i = 0; i &lt; n; i++) {
+    h[i] = get_hash(s[i]);
+  }
+  sort(h.begin(), h.end());
+  int ans = 1;
+  for (int i = 1; i &lt; n; i++) {
+    if (h[i] != h[i - 1]) {
+      ans++;
+    }
+  }
+  cout &lt; ans &lt; '\n';
+  return 0;
+}</code></pre>
+      <p class="mt-2">Belə bir nüansa da baxaq. Bizə bir milyon söz
+        verilib. Bu sözlər arasında ən azı iki təsadüfi sözün olma ehtimalı necədir? Bizim halda $M \approx 10^9$
+        olduğundan:
+        $$1 - e^{-\frac{(10^6)^2}{2\cdot 10^9}} = 1 - e^{-500} \approx 1$$ olur. Bu isə kodumuzun səhv işləyə biləcəyi
+        mənasına gəlir (məsələnin testlərindən asılıdır, çox vaxt bəxtimiz gətirə də bilir).
+        Xoşbəxtlikdən, bundan qurtulmağın da asan yolu var: kodlama üçün iki fərqli funksiya
+        götürürük. Məsələn, bayaq $p=47, M=10^9+7$ götürmüşdük, əlavə olaraq da, $p'=29, M'=10^9+7$ götürək və hər iki
+        funksiyanın nəticəsini yoxlayaq. Onda kodlama üçün fərqli namizədlərin sayı təxminən $10^{18}$ olur.
+        Yuxarıdakı hesablamada $M=10^{18}$ götürsək, o zaman ehtimal $0.0000005$ olur (iki-milyonda bir).
+        Bu, yetəri qədər yaxşıdır.
+        Qısaca, bunu nəzərə alın: söz sayı 10000-dən çox olsa, onda kodlama üçün iki fərqli funksiya götürmək
+        lazımdır.
+      </p>
+      <p class="mt-4 border p-3 rounded-xl">
+        <span class="font-semibold">Dərsdə həll</span>
+        <br />
+        <a href="https://codeforces.com/problemset/problem/126/B" target="_blank">Password (Div.1 B)</a>
+        məsələsini həll et.
+      </p>
+      <p class="mt-4 border p-3 rounded-xl">
+        <span class="font-semibold">Dərsdə həll</span>
+        <br />
+        <a href="https://oj.uz/problem/view/CEOI17_palindromic" target="_blank">Palindromic Partitions (CEOI 2017)</a>
+        məsələsini həll et.
+      </p>
+      <p>Kömək üçün $check_equal$ funksiyasına baxa bilərsiniz:</p>
+<pre><code>const int N = 1e6 + 5;
+const int P = 43;
+const int M = 1e9 + 7;
+
+int n;
+int p[N], h[N];
+
+// s[a..a+l-1] == s[b..b+l-1]
+bool check_equal(int a, int b, int l) {
+  int ha = (h[a + l - 1] - h[a - 1] + M) % M;
+  int hb = (h[b + l - 1] - h[b - 1] + M) % M;
+  return 1ll * ha * p[b - a] % M == hb;
+}
+
+int main() {
+  string s;
+  cin >> s;
+  n = s.size();
+
+  p[0] = 1;
+  for (int i = 1; i <= n; i++) {
+    p[i] = 1LL * p[i - 1] * P % M;
+  }
+
+  h[0] = 0;
+  for (int i = 1; i <= n; i++) {
+    h[i] = (h[i - 1] + 1LL * (s[i - 1] - 'a' + 1) * p[i - 1] % M) % M;
+  }</code></pre>
+    </section>
+    <section class="mt-6">
+      <h2 class="text-2xl">Əlavə faydalı resurslar</h2>
+      <ul class="mt-2 ml-8 list-disc">
+        <li>
+          <a href="https://cses.fi/book/book.pdf#section.26.3" target="_blank">CSES Kitabında String Hashing</a>
+        </li>
+        <li>
+          <a href="https://usaco.guide/gold/string-hashing" target="_blank">USACO Guide Gold: String Hashing</a>
+        </li>
+        <li><a href="https://cp-algorithms.com/string/string-hashing.html" target="_blank">CP-Algorithms: String Hashing</a></li>
+      </ul>
+    </section>
+    <section class="mt-6 no-print" id="homework">
+      <h2 class="text-2xl">Ev tapşırığı</h2>
+      <p class="mt-2">
+        Bu dərs üçün xüsusi ev tapşırığı VJudge qrupundakı String Hashing yarışıdır:
+        <a href="https://vjudge.net/group/kamp2024" target="_blank"
+          rel="noopener noreferrer">https://vjudge.net/group/kamp2024</a>
+      </p>
+    </section>
+  </main>
+  <script src="/dist/prism.js"></script>
+</body>
+
+</html>
