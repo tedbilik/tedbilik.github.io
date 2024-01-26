@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İnformatika Qış Kampı 2024</title>
+  <link rel="stylesheet" href="/dist/styles.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap");
+
+    body {
+      font-family: "Source Sans Pro", sans-serif;
+    }
+
+    pre>code.language-cpp {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    @media print {
+      * {
+        color: #000 !important;
+      }
+
+      code,
+      .token {
+        text-shadow: none !important;
+      }
+
+      pre[class*="language-"],
+      code {
+        box-shadow: none !important;
+      }
+
+      p.border {
+        border-width: 2px;
+        border-color: darkslategray;
+      }
+
+      * {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+      }
+
+      .no-print {
+        display: none;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="/dist/prism.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous" />
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4"
+    crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // customised options
+        // • auto-render specific keys, e.g.:
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true },
+        ],
+        // • rendering keys, e.g.:
+        throwOnError: false,
+      });
+    });
+  </script>
+</head>
+
+<body class="bg-neutral-800" lang="az">
+  <main class="text-neutral-200 min-h-screen w-screen px-5 max-w-4xl text-lg mx-auto py-5 language-cpp">
+    <header class="flex flex-col items-center">
+      <a href=".." class="mb-2 flex items-center gap-2 no-underline no-print">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-up"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z" />
+        </svg>
+        <span>Geri qayıt</span></a>
+      <h1 class="flex justify-center text-3xl">
+        Dərs 3: Bit ilə həll olan məsələlər və Trie
+      </h1>
+      <h2>Müəllim: Barış Namazov</h2>
+    </header>
+    <section class="mt-6 no-print">
+      <h2 class="text-2xl">Dərsin videosu</h2>
+      <p>Yüklənəcək.</p>
+    </section>
+    <section class="mt-6">
+      <header class="flex items-center justify-between">
+        <h2 class="text-2xl">Qeydlər</h2>
+        <button onclick="window.print()"
+          class="border rounded-xl px-2 py-1 bg-neutral-700 no-print hover:bg-neutral-900">
+          Qeydləri çap et
+        </button>
+      </header>
+      <h3 class="text-xl mt-2 font-bold">Kontekst</h3>
+      <p class="mt-2">Elə məsələlər var ki, onları həll etdikdə ədədlərlə ikilik say sistemində işləmək işimizi
+        asanlaşdırır. Bu dərsdə həm ikilik say sisteminin əsaslarını və kodda bitlərlə işləməyi, həmçinin də Trie
+        adında yeni bit struktur öyrənəcəyik. Bu struktur ingilis dilində "re<i>trie</i>ve" sözündən gəlir, o sözü isə
+        <i>retriv</i> kimi oxuyuruq. Ona görə də, düzgün oxunuşu <i>tri</i> kimi olsa da, çoxları onu <i>tray</i> kimi
+        oxuyur ki, başqa mövzu olan "tree" sözündən fərqlənsin. Amma trie də bir ağacdır.
+      </p>
+      <h3 class="text-xl mt-2 font-bold">Bit əməlləri</h3>
+      <p class="mt-2">Bilməli olduğumuz bit əməlləri bunlardır:</p>
+      <ul class="list-disc ml-8">
+        <li>& (and) operatoru</li>
+        <li>| (or) operatoru</li>
+        <li>^ (xor) operatoru (riyaziyyatda $\oplus$ kimi də yazılır)</li>
+        <li>! (not) operatoru</li>
+        <li>&lt;&lt; (sola sürüşmə) operatoru</li>
+        <li>>> (sağa sürüşmə) operatoru</li>
+        <li>~ (tərsləmə) operatoru</li>
+      </ul>
+      </p>
+      <p class="mt-4 border p-3 rounded-xl">
+        <span class="font-semibold">Dərsdə həll</span>
+        <br />
+        <a href="https://codeforces.com/problemset/problem/579/A" target="_blank" rel="noopener noreferrer">Raising
+          Bacteria</a> məsələsini həll et.
+      </p>
+      <p class="mt-2">xor əməliyyatı üçün belə bir qayda da var: <code>a ^ b = c</code> şərti varsa,
+        <code>a ^ c = b</code> və <code>b ^ c = a</code> da düzdür.
+      </p>
+      <p class="mt-4 border p-3 rounded-xl">
+        <span class="font-semibold">Dərsdə həll</span>
+        <br />
+        Mənfi olmayan tam ədədlərdən ibarət $a$ massivi verilir. Orada elə $i &lt; j$ cütlüklərini sayın ki, $a[i]
+        \oplus a[j] = k$.
+      </p>
+      <p class="mt-2">Əlavə olaraq, bitlərdən istifadə edərək ədədin spesifik bir bitini üzrə əməliyyat apara bilərik:
+      <ul class="list-disc ml-8">
+        <li><code>x & (1 << i)</code> ilə x ədədinin i-ci biti</li>
+        <li><code>x |= (1 << i)</code> ilə x ədədinin i-ci bitini 1 et</li>
+        <li><code>x ^= (1 << i)</code> ilə x ədədinin i-ci bitini dəyiş (0 idisə 1, əks halda 0 et)</li>
+        <li><code>x &= ~(1 << i)</code> ilə x ədədinin i-ci bitini 0 et</li>
+      </ul>
+      <p class="mt-2">Bunları bilmək çox məsələni etmək üçün yetərlidir. İndi isə əsas olan məsələdə hər bit üçün cavabı
+        hesablamağı fikirləşməkdir.</p>
+      <p class="mt-4 border p-3 rounded-xl">
+        <span class="font-semibold">Dərsdə həll</span>
+        <br />
+        <a href="https://codeforces.com/problemset/problem/1669/H" target="_blank" rel="noopener noreferrer">Maximal
+          AND</a> məsələsini həll et.
+      </p>
+      <p class="mt-4 border p-3 rounded-xl">
+        <span class="font-semibold">Dərsdə həll</span>
+        <br />
+        <a href="https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/description/" target="_blank"
+          rel="noopener noreferrer">LeetCode 421</a> məsələsini həll et.
+      </p>
+      <h3 class="text-xl mt-4 font-bold">Trie strukturu</h3>
+      <pre><code>int trie[N][2];
+int value[N];
+int next_node = 1;
+
+void add(int x) {
+  int node = 0;
+  for (int bt = 30; bt >= 0; bt--) {
+    int b = (x & (1 << bt)) > 0;
+    if (trie[node][b] == 0) {
+      node = trie[node][b] = next_node++;
+    } else {
+      node = trie[node][b];
+    }
+  }
+  value[node]++;
+}
+</code></pre>
+      <p class="mt-4 border p-3 rounded-xl">
+        <span class="font-semibold">Dərsdə həll</span>
+        <br />
+        Məsələ: Boş massiv ilə başlayırıq. Query tip 1 ilə massivə ədəd əlavə edirik. Query tip 2-də $x$ ədədi verilir,
+        $a[i] \oplus x$ ədədinin maksimum dəyərini tapmaq lazımdır.
+      </p>
+      <pre><code>int query(int x) {
+  int node = 0;
+  int res = 0; // cavab
+  for (int bt = 30; bt >= 0; bt--) {
+    int b = (x & (1 << bt)) > 0;
+    if (trie[node][b ^ 1]) { // bu biti cavabda 1 etmək mümkündür
+      node = trie[node][b ^ 1];
+      res |= (1 << bt); // cavaba biti yaz
+    } else if (trie[node][b]) {
+      node = trie[node][b];
+    } else { // trie bitti (bu məsələdə rast gəlinməyəcək, amma ümumi halda ola bilər)
+      break;
+    }
+  }
+  return res;
+}</code></pre>
+
+    </section>
+    <section class="mt-6">
+      <h2 class="text-2xl">Əlavə faydalı resurslar</h2>
+      <ul class="mt-2 ml-8 list-disc">
+        <li>
+          <a href="https://usaco.guide/silver/intro-bitwise" target="_blank">USACO Guide Silver: Intro to Bitwise
+            Operators</a>
+        </li>
+        <li>
+          <a href="https://cses.fi/book/book.pdf#section.26.2" target="_blank">CSES Kitabında Trie structure</a>
+        </li>
+        <li><a href="https://cp-algorithms.com/algebra/bit-manipulation.html" target="_blank">CP-Algorithms: Bit
+            manipulation</a></li>
+        <li><a href="https://www.hackerearth.com/practice/notes/lalitkundu95/tutorial-on-trie-and-example-problems/"
+            target="_blank">Tutorial on Trie and example problems</a></li>
+        <li><a href="https://mamnoonsiam.github.io/cp-classes/week-10/overview"
+            target="_blank">mamnoonsiam: Trie</a></li>
+      </ul>
+    </section>
+    <section class="mt-6 no-print" id="homework">
+      <h2 class="text-2xl">Ev tapşırığı</h2>
+      <p class="mt-2">
+        Bu dərs üçün xüsusi ev tapşırığı VJudge qrupundakı Bit Manipulation və Trie yarışıdır:
+        <a href="https://vjudge.net/group/kamp2024" target="_blank"
+          rel="noopener noreferrer">https://vjudge.net/group/kamp2024</a>
+      </p>
+    </section>
+  </main>
+  <script src="/dist/prism.js"></script>
+</body>
+
+</html>
