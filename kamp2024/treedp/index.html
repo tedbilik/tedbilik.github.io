@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İnformatika Qış Kampı 2024</title>
+  <link rel="stylesheet" href="/dist/styles.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@0;1&display=swap");
+
+    body {
+      font-family: "Source Sans Pro", sans-serif;
+    }
+
+    pre>code.language-cpp {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    @media print {
+      * {
+        color: #000 !important;
+      }
+
+      code,
+      .token {
+        text-shadow: none !important;
+      }
+
+      pre[class*="language-"],
+      code {
+        box-shadow: none !important;
+      }
+
+      p.border {
+        border-width: 2px;
+        border-color: darkslategray;
+      }
+
+      * {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+      }
+
+      .no-print {
+        display: none;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="/dist/prism.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous" />
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4"
+    crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // customised options
+        // • auto-render specific keys, e.g.:
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true },
+        ],
+        // • rendering keys, e.g.:
+        throwOnError: false,
+      });
+    });
+  </script>
+</head>
+
+<body class="bg-neutral-800" lang="az">
+  <main class="text-neutral-200 min-h-screen w-screen px-5 max-w-4xl text-lg mx-auto py-5 language-cpp">
+    <header class="flex flex-col items-center">
+      <a href=".." class="mb-2 flex items-center gap-2 no-underline no-print">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-up"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z" />
+        </svg>
+        <span>Geri qayıt</span></a>
+      <h1 class="flex justify-center text-3xl">
+        Dərs 8: Ağac DP
+      </h1>
+      <h2>Müəllim: Rəşad Məmmədov</h2>
+    </header>
+    <section class="mt-6 no-print">
+      <h2 class="text-2xl">Dərsin videosu</h2>
+
+
+            <iframe class="my-4" width="100%" height="400px" src="https://www.youtube.com/embed/nv_1W2ujzlQ"
+             title="İnformatika Qış Kampı 2024: Ağac DP (Dərs 8)" frameborder="0"
+             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+    </section>
+    <section class="mt-6">
+      <header class="flex items-center justify-between">
+        <h2 class="text-2xl">Qeydlər</h2>
+        <button onclick="window.print()"
+          class="border rounded-xl px-2 py-1 bg-neutral-700 no-print hover:bg-neutral-900">
+          Qeydləri çap et
+        </button>
+      </header>
+      <h3 class="text-xl mt-2 font-bold">Hələ yoxdur yaza bilərsən.</h3>
+
+    </section>
+    <section class="mt-6">
+      <h2 class="text-2xl">Əlavə faydalı resurslar</h2>
+      <ul class="mt-2 ml-8 list-disc">
+        <li><a href="https://codeforces.com/blog/entry/20935" target="_blank">Codeforces darkshadows's blog DP on Trees Tutorial</a></li>
+        <li><a href="https://usaco.guide/gold/dp-trees?lang=cpp" target="_blank">USACO Guide Gold:DP on Trees - Introduction </a></li>
+        <li><a href="https://www.geeksforgeeks.org/introduction-to-dynamic-programming-on-trees/" target="_blank">GeeksForGeeks :Introduction to Dynamic Programming on Trees</a></li>
+        
+      </ul>
+    </section>
+    <section class="mt-6 no-print" id="homework">
+      <h2 class="text-2xl">Ev tapşırığı</h2>
+      <p class="mt-2">
+        Bu dərs üçün xüsusi ev tapşırığı VJudge qrupundakı Tree Algorithms and DP on Trees yarışıdır:
+        <a href="https://vjudge.net/group/kamp2024" target="_blank"
+          rel="noopener noreferrer">https://vjudge.net/group/kamp2024</a>
+      </p>
+    </section>
+  </main>
+  <script src="/dist/prism.js"></script>
+</body>
+
+</html>
